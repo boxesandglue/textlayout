@@ -3,7 +3,7 @@ package type1
 import (
 	"math"
 
-	"github.com/benoitkugler/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts"
 )
 
 // font metrics

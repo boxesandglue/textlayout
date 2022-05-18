@@ -3,7 +3,7 @@ package truetype
 import (
 	"math"
 
-	"github.com/benoitkugler/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts"
 )
 
 var _ fonts.FaceMetrics = (*Font)(nil)

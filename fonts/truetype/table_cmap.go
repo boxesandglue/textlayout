@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/benoitkugler/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts"
 	"golang.org/x/text/encoding/charmap"
 )
 

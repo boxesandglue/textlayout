@@ -8,7 +8,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/benoitkugler/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts"
 )
 
 var _ fonts.Face = (*Font)(nil)

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"math/bits"
 
-	"github.com/benoitkugler/textlayout/fonts"
-	tt "github.com/benoitkugler/textlayout/fonts/truetype"
+	"github.com/speedata/textlayout/fonts"
+	tt "github.com/speedata/textlayout/fonts/truetype"
 )
 
 const maxContextLength = 64

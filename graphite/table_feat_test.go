@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	testdata "github.com/benoitkugler/textlayout-testdata/graphite"
-	"github.com/benoitkugler/textlayout/fonts/truetype"
+	"github.com/speedata/textlayout/fonts/truetype"
 )
 
 // adapted from graphite/tests/featuremap/featuremaptest.cpp

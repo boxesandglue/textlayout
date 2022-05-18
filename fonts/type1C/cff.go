@@ -10,9 +10,9 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/benoitkugler/textlayout/fonts"
-	"github.com/benoitkugler/textlayout/fonts/glyphsnames"
-	"github.com/benoitkugler/textlayout/fonts/simpleencodings"
+	"github.com/speedata/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts/glyphsnames"
+	"github.com/speedata/textlayout/fonts/simpleencodings"
 )
 
 // var Loader fonts.FontLoader = loader{}

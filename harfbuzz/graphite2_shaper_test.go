@@ -4,7 +4,7 @@ import (
 	"math"
 	"testing"
 
-	tt "github.com/benoitkugler/textlayout/fonts/truetype"
+	tt "github.com/speedata/textlayout/fonts/truetype"
 )
 
 func TestTagFromString(t *testing.T) {

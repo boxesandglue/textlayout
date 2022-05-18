@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	testdata "github.com/benoitkugler/textlayout-testdata/graphite"
-	"github.com/benoitkugler/textlayout/fonts/truetype"
+	"github.com/speedata/textlayout/fonts/truetype"
 )
 
 // Test shaping output against the reference graphite implementation

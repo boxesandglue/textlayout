@@ -1,4 +1,4 @@
-module github.com/benoitkugler/textlayout
+module github.com/speedata/textlayout
 
 go 1.17
 

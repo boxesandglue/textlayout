@@ -4,9 +4,9 @@ import (
 	"math"
 	"sort"
 
-	"github.com/benoitkugler/textlayout/fonts"
-	"github.com/benoitkugler/textlayout/fonts/truetype"
-	"github.com/benoitkugler/textlayout/language"
+	"github.com/speedata/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts/truetype"
+	"github.com/speedata/textlayout/language"
 )
 
 /* ported from harfbuzz/src/hb-buffer.hh and hb-buffer.h

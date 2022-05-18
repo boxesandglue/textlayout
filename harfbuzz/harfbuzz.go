@@ -15,8 +15,8 @@ import (
 	"math/bits"
 	"strconv"
 
-	tt "github.com/benoitkugler/textlayout/fonts/truetype"
-	"github.com/benoitkugler/textlayout/language"
+	tt "github.com/speedata/textlayout/fonts/truetype"
+	"github.com/speedata/textlayout/language"
 )
 
 // based on upstream commit 449c4296a11a8b3d3882d4a4d6705281f5ff52e5

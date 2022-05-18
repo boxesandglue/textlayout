@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	testdata "github.com/benoitkugler/textlayout-testdata/graphite"
-	"github.com/benoitkugler/textlayout/fonts/truetype"
+	"github.com/speedata/textlayout/fonts/truetype"
 )
 
 func loadGraphite(t *testing.T, filename string) *GraphiteFace {

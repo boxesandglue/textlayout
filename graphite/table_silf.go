@@ -9,7 +9,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/benoitkugler/textlayout/fonts/binaryreader"
+	"github.com/speedata/textlayout/fonts/binaryreader"
 )
 
 type tableSilf []passes

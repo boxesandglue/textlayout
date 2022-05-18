@@ -1,8 +1,8 @@
 package harfbuzz
 
 import (
-	tt "github.com/benoitkugler/textlayout/fonts/truetype"
-	ucd "github.com/benoitkugler/textlayout/unicodedata"
+	tt "github.com/speedata/textlayout/fonts/truetype"
+	ucd "github.com/speedata/textlayout/unicodedata"
 )
 
 // ported from harfbuzz/src/hb-ot-shape-complex-hangul.cc Copyright © 2013  Google, Inc. Behdad Esfahbod

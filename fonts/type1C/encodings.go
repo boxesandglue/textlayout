@@ -1,6 +1,6 @@
 package type1c
 
-import "github.com/benoitkugler/textlayout/fonts/simpleencodings"
+import "github.com/speedata/textlayout/fonts/simpleencodings"
 
 // the Standard encoding the same as in PDF
 // but expertEncoding is not the same as MacExpert

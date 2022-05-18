@@ -1,6 +1,6 @@
 package harfbuzz
 
-import tt "github.com/benoitkugler/textlayout/fonts/truetype"
+import tt "github.com/speedata/textlayout/fonts/truetype"
 
 // ported from harfbuzz/src/hb-ot-shape-complex-hebrew.cc Copyright © 2010,2012  Google, Inc.  Behdad Esfahbod
 

@@ -4,7 +4,7 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/benoitkugler/textlayout/fonts/truetype"
+	"github.com/speedata/textlayout/fonts/truetype"
 )
 
 // ported from harfbuzz/test/api/test-aat-layout.c Copyright © 2018  Ebrahim Byagowi

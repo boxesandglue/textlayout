@@ -11,7 +11,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/benoitkugler/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts"
 )
 
 // use a reference library to extensively test the shaping process

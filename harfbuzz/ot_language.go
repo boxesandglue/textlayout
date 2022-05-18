@@ -3,8 +3,8 @@ package harfbuzz
 import (
 	"strings"
 
-	tt "github.com/benoitkugler/textlayout/fonts/truetype"
-	"github.com/benoitkugler/textlayout/language"
+	tt "github.com/speedata/textlayout/fonts/truetype"
+	"github.com/speedata/textlayout/language"
 )
 
 type langTag struct {

@@ -3,7 +3,7 @@ package harfbuzz
 import (
 	"testing"
 
-	tt "github.com/benoitkugler/textlayout/fonts/truetype"
+	tt "github.com/speedata/textlayout/fonts/truetype"
 )
 
 func TestOTFeature(t *testing.T) {

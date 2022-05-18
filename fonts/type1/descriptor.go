@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/benoitkugler/textlayout/fonts"
-	"github.com/benoitkugler/textlayout/fonts/simpleencodings"
+	"github.com/speedata/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts/simpleencodings"
 )
 
 var _ fonts.FontDescriptor = (*fontDescriptor)(nil)

@@ -1,6 +1,6 @@
 package bitmap
 
-import "github.com/benoitkugler/textlayout/fonts"
+import "github.com/speedata/textlayout/fonts"
 
 var _ fonts.FaceMetrics = (*Font)(nil)
 

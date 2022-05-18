@@ -10,7 +10,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/benoitkugler/textlayout/unicodedata"
+	"github.com/speedata/textlayout/unicodedata"
 	"golang.org/x/text/unicode/rangetable"
 )
 
@@ -286,7 +286,7 @@ func generateHasArabicJoining(joining map[rune]unicodedata.ArabicJoining, script
 		switch script {
 		case %s:
 			return true
-		default: 
+		default:
 			return false
 		}
 	}`, strings.Join(scriptList, ","))
@@ -479,7 +479,7 @@ func generateScriptLookupTable(scripts map[string][]runeRange, scriptNames map[s
 		start, end rune
 		script     Script
 	}
-	
+
 	var scriptRanges = [...]scriptItem{`)
 	for _, item := range crible {
 		fmt.Fprintf(w, "{start: 0x%x, end: 0x%x, script: 0x%08x},\n", item.start, item.end, item.script)

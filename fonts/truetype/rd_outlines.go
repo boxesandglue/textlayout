@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/benoitkugler/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts"
 )
 
 // this file converts from font format for glyph outlines to

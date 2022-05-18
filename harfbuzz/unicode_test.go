@@ -3,8 +3,8 @@ package harfbuzz
 import (
 	"testing"
 
-	"github.com/benoitkugler/textlayout/language"
-	"github.com/benoitkugler/textlayout/unicodedata"
+	"github.com/speedata/textlayout/language"
+	"github.com/speedata/textlayout/unicodedata"
 )
 
 // ported from harfbuzz/test/api/test-unicode.c Copyright © 2011  Codethink Limited, Google, Inc. Ryan Lortie, Behdad Esfahbod

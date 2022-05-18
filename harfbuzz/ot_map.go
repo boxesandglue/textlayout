@@ -6,7 +6,7 @@ import (
 	"math/bits"
 	"sort"
 
-	tt "github.com/benoitkugler/textlayout/fonts/truetype"
+	tt "github.com/speedata/textlayout/fonts/truetype"
 )
 
 // ported from harfbuzz/src/hb-ot-map.cc, hb-ot-map.hh Copyright © 2009,2010  Red Hat, Inc. 2010,2011,2013  Google, Inc. Behdad Esfahbod

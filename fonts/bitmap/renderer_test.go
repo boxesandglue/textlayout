@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	testdata "github.com/benoitkugler/textlayout-testdata/bitmap"
-	"github.com/benoitkugler/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts"
 )
 
 func TestGlyphData(t *testing.T) {

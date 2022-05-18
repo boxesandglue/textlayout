@@ -3,8 +3,8 @@
 package graphite
 
 import (
-	"github.com/benoitkugler/textlayout/fonts"
-	"github.com/benoitkugler/textlayout/fonts/truetype"
+	"github.com/speedata/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts/truetype"
 )
 
 const debugMode = 0

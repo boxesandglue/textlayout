@@ -36,7 +36,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/benoitkugler/textlayout/language"
+	"github.com/speedata/textlayout/language"
 	"golang.org/x/net/html"
 	"golang.org/x/net/html/atom"
 	"golang.org/x/text/unicode/norm"

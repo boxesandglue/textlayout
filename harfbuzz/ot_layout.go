@@ -1,8 +1,8 @@
 package harfbuzz
 
 import (
-	"github.com/benoitkugler/textlayout/fonts"
-	tt "github.com/benoitkugler/textlayout/fonts/truetype"
+	"github.com/speedata/textlayout/fonts"
+	tt "github.com/speedata/textlayout/fonts/truetype"
 )
 
 // ported from src/hb-ot-layout.cc, hb-ot-layout.hh

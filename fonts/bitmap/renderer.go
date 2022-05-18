@@ -1,7 +1,7 @@
 package bitmap
 
 import (
-	"github.com/benoitkugler/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts"
 )
 
 var _ fonts.FaceRenderer = (*Font)(nil)

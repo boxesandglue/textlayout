@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/benoitkugler/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts"
 )
 
 const spaces = " \t\n\r\f"

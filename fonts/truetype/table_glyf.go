@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/benoitkugler/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts"
 )
 
 const maxCompositeNesting = 20 // protect against malicious fonts

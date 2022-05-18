@@ -7,9 +7,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/benoitkugler/textlayout/fonts"
-	ps "github.com/benoitkugler/textlayout/fonts/psinterpreter"
-	"github.com/benoitkugler/textlayout/fonts/simpleencodings"
+	"github.com/speedata/textlayout/fonts"
+	ps "github.com/speedata/textlayout/fonts/psinterpreter"
+	"github.com/speedata/textlayout/fonts/simpleencodings"
 )
 
 var (

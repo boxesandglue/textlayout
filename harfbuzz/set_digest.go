@@ -1,8 +1,8 @@
 package harfbuzz
 
 import (
-	"github.com/benoitkugler/textlayout/fonts"
-	"github.com/benoitkugler/textlayout/fonts/truetype"
+	"github.com/speedata/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts/truetype"
 )
 
 // ported from src/hb-set-digest.hh Copyright © 2012  Google, Inc. Behdad Esfahbod

@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	ps "github.com/benoitkugler/textlayout/fonts/psinterpreter"
+	ps "github.com/speedata/textlayout/fonts/psinterpreter"
 )
 
 var _ ps.PsOperatorHandler = (*type1CharstringParser)(nil)

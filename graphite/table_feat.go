@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/benoitkugler/textlayout/fonts/binaryreader"
-	"github.com/benoitkugler/textlayout/fonts/truetype"
+	"github.com/speedata/textlayout/fonts/binaryreader"
+	"github.com/speedata/textlayout/fonts/truetype"
 )
 
 // FeatureValue specifies a value for a given feature.

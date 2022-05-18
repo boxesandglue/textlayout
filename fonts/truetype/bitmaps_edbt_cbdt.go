@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/benoitkugler/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts"
 )
 
 // group the location (cblc/eblc/bloc) and the data (cbdt/cbdt/bdat)

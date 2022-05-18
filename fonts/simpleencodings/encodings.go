@@ -5,7 +5,7 @@
 package simpleencodings
 
 import (
-	"github.com/benoitkugler/textlayout/fonts/glyphsnames"
+	"github.com/speedata/textlayout/fonts/glyphsnames"
 )
 
 // Encoding maps a one byte code to a glyph name.

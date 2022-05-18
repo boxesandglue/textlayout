@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/benoitkugler/textlayout/fonts"
+	"github.com/speedata/textlayout/fonts"
 )
 
 const maxNumFonts = 1024 // security implementation limit
