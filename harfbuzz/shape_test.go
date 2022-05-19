@@ -143,7 +143,7 @@ func (fo *fontOptions) getFont() *Font {
 	scaleY := scalbnf(float64(fo.fontSizeY), fo.subpixelBits)
 	fo.font.XScale, fo.font.YScale = scaleX, scaleY
 
-	tt.SetVariations(fo.font.face.(FaceOpentype), fo.variations)
+	tt.SetVariations(fo.font.face.(FaceOpenType), fo.variations)
 
 	return fo.font
 }
@@ -223,7 +223,7 @@ type shapeOptions struct {
 
 func (so *shapeOptions) setupBuffer(buffer *Buffer) {
 	buffer.Props = so.props
-	var flags ShappingOptions
+	var flags ShapingOptions
 	if so.bot {
 		flags |= Bot
 	}

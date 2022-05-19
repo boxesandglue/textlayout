@@ -1,4 +1,4 @@
-// Pacakge bitmap provides support for bitmap fonts
+// Package bitmap provides support for bitmap fonts
 // found in .pcf files.
 package bitmap
 
@@ -221,7 +221,7 @@ func (f *Font) LoadSummary() (fonts.FontSummary, error) {
 	return fonts.FontSummary{
 		IsItalic:          isItalic,
 		IsBold:            isBold,
-		Familly:           familyName,
+		Family:            familyName,
 		Style:             styleName,
 		HasScalableGlyphs: false,
 		HasBitmapGlyphs:   true,
@@ -229,7 +229,7 @@ func (f *Font) LoadSummary() (fonts.FontSummary, error) {
 	}, nil
 }
 
-func (f *Font) PoscriptName() string { return "" }
+func (f *Font) PostscriptName() string { return "" }
 
 func (f *Font) PostscriptInfo() (fonts.PSInfo, bool) { return fonts.PSInfo{}, false }
 

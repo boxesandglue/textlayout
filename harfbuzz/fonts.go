@@ -13,25 +13,25 @@ import (
 
 // Face is the interface providing font metrics and layout information.
 // Harfbuzz is mostly useful when used with fonts providing advanced layout capabilities :
-// see the extension interface `FaceOpentype`.
+// see the extension interface `FaceOpenType`.
 type Face = fonts.Face
 
-var _ FaceOpentype = (*truetype.Font)(nil)
+var _ FaceOpenType = (*truetype.Font)(nil)
 
-// FaceOpentype adds support for advanced layout features
-// found in Opentype/Truetype font files.
+// FaceOpenType adds support for advanced layout features
+// found in OpenType/Truetype font files.
 // See the package fonts/truetype for more details.
-type FaceOpentype interface {
+type FaceOpenType interface {
 	Face
 	truetype.FaceVariable
 
 	// Returns true if the font has Graphite capabilities.
 	// Note that tables validity will still be checked in `NewFont`,
 	// using the table from the returned `truetype.Font`.
-	// Overide this method to disable Graphite functionalities.
+	// Override this method to disable Graphite functionalities.
 	IsGraphite() (*truetype.Font, bool)
 
-	// LayoutTables fetchs the Opentype layout tables of the font.
+	// LayoutTables fetches the OpenType layout tables of the font.
 	LayoutTables() truetype.LayoutTables
 
 	// GetGlyphContourPoint retrieves the (X,Y) coordinates (in font units) for a
@@ -51,7 +51,7 @@ type FaceOpentype interface {
 // settings).
 //
 // Font are constructed with `NewFont` and adjusted by accessing the fields
-// XPpem, YPpem, Ptem,XScale, YScale and with the method `SetVarCoordsDesign` for
+// XPpem, YPpem, Ptem, XScale, YScale and with the method `SetVarCoordsDesign` for
 // variable fonts.
 type Font struct {
 	face Face
@@ -59,9 +59,9 @@ type Font struct {
 	// only non nil for valid graphite fonts
 	gr *graphite.GraphiteFace
 
-	// opentype fields, initialized from a FaceOpentype
+	// opentype fields, initialized from a FaceOpenType
 	otTables               *truetype.LayoutTables
-	gsubAccels, gposAccels []otLayoutLookupAccelerator // accelators for lookup
+	gsubAccels, gposAccels []otLayoutLookupAccelerator // accelerators for lookup
 	faceUpem               int32                       // cached value of Face.Upem()
 
 	// Point size of the font. Set to zero to unset.
@@ -77,8 +77,8 @@ type Font struct {
 	XScale, YScale int32
 
 	// Horizontal and vertical pixels-per-em (ppem) of the font.
-	// Is is used to select bitmap sizes and to perform some Opentype
-	// positionning.
+	// Is is used to select bitmap sizes and to perform some OpenType
+	// positioning.
 	XPpem, YPpem uint16
 }
 
@@ -88,7 +88,7 @@ type Font struct {
 // the output results will be expressed in font units.
 //
 // When appropriate, it will load the additional information
-// required for Opentype and Graphite layout, which will influence
+// required for OpenType and Graphite layout, which will influence
 // the shaping plan used in `Buffer.Shape`.
 //
 // The `face` object should not be modified after this call.
@@ -100,7 +100,7 @@ func NewFont(face Face) *Font {
 	font.XScale = font.faceUpem
 	font.YScale = font.faceUpem
 
-	if opentypeFace, ok := face.(FaceOpentype); ok {
+	if opentypeFace, ok := face.(FaceOpenType); ok {
 		lt := opentypeFace.LayoutTables()
 		font.otTables = &lt
 
@@ -125,7 +125,7 @@ func NewFont(face Face) *Font {
 // SetVarCoordsDesign applies a list of variation coordinates, in design-space units,
 // to the font.
 func (f *Font) SetVarCoordsDesign(coords []float32) {
-	if varFace, ok := f.face.(FaceOpentype); ok {
+	if varFace, ok := f.face.(FaceOpenType); ok {
 		varFace.SetVarCoordinates(varFace.NormalizeVariations(coords))
 	}
 }
@@ -291,7 +291,7 @@ func (f *Font) addGlyphHOrigin(glyph fonts.GID, x, y Position) (Position, Positi
 }
 
 func (f *Font) getGlyphContourPointForOrigin(glyph fonts.GID, pointIndex uint16, direction Direction) (x, y Position, ok bool) {
-	met, ok := f.face.(FaceOpentype)
+	met, ok := f.face.(FaceOpenType)
 	if !ok {
 		return
 	}
@@ -355,7 +355,7 @@ func (f *Font) LineMetric(metric fonts.LineMetric) (int32, bool) {
 }
 
 func (font *Font) varCoords() []float32 {
-	if ot, ok := font.face.(FaceOpentype); ok {
+	if ot, ok := font.face.(FaceOpenType); ok {
 		return ot.VarCoordinates()
 	}
 	return nil
@@ -384,7 +384,7 @@ func (font *Font) getYDelta(varStore tt.VariationStore, device tt.DeviceTable) P
 }
 
 // GetOTLayoutTables returns the OpenType layout tables, or nil
-// if the underlying face is not a FaceOpentype.
+// if the underlying face is not a FaceOpenType.
 // The returned tables should not be modified.
 func (f *Font) GetOTLayoutTables() *tt.LayoutTables { return f.otTables }
 

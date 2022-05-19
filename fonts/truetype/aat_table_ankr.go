@@ -6,6 +6,7 @@ import (
 	"fmt"
 )
 
+// TableAnkr represents the ankr table
 type TableAnkr struct {
 	class   Class
 	anchors []byte

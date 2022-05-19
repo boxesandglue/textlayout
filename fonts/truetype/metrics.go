@@ -8,7 +8,7 @@ import (
 
 var _ fonts.FaceMetrics = (*Font)(nil)
 
-// Returns true if the font has Graphite capabilities,
+// IsGraphite returns true if the font has Graphite capabilities,
 // but does not check if the tables are actually valid.
 func (font *Font) IsGraphite() (*Font, bool) {
 	return font, font.Graphite != nil

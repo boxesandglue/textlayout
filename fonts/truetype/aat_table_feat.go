@@ -8,7 +8,7 @@ import (
 
 type TableFeat []AATFeatureName
 
-// GetFeature performs a binary seach into the names, using `Feature` as key,
+// GetFeature performs a binary search into the names, using `Feature` as key,
 // returning `nil` if not found.
 func (t TableFeat) GetFeature(feature uint16) *AATFeatureName {
 	for i, j := 0, len(t); i < j; {
@@ -81,9 +81,9 @@ func (feature *AATFeatureName) defaultIndex() uint16 {
 }
 
 // GetSelectorInfos fetches a list of the selectors available for the feature,
-// and the default index. It the later equals 0xFFFF, then
-// the feature type is non-exclusive.  Otherwise, it is the index of
-// the selector that is selected by default.
+// and the default index. It the later equals 0xFFFF, then the feature type is
+// non-exclusive.  Otherwise, it is the index of the selector that is selected
+// by default.
 func (feature *AATFeatureName) GetSelectorInfos() ([]AATFeatureSelector, uint16) {
 	settingsTable := feature.Settings
 

@@ -32,10 +32,9 @@ type PSInfo struct {
 	UnderlineThickness int
 }
 
-// FontSummary stores basic informations about the
-// style of the font.
+// FontSummary stores basic information about the style of the font.
 type FontSummary struct {
-	Familly          string
+	Family           string
 	Style            string
 	IsItalic, IsBold bool
 
@@ -53,11 +52,11 @@ type FaceMetadata interface {
 	// or false is not available.
 	PostscriptInfo() (PSInfo, bool)
 
-	// PoscriptName returns the PoscriptName of the font,
+	// PostscriptName returns the PostscriptName of the font,
 	// or an empty string.
-	PoscriptName() string
+	PostscriptName() string
 
-	// LoadSummary fetchs global details about the font.
+	// LoadSummary fetches global details about the font.
 	// Conceptually, this method just returns it receiver, but this enables lazy loading.
 	LoadSummary() (FontSummary, error)
 
@@ -75,7 +74,7 @@ type Face interface {
 	FaceRenderer
 }
 
-// Faces is the parsed content of a font ressource.
+// Faces is the parsed content of a font resource.
 // Note that variable fonts are not repeated in this slice,
 // since instances are accessed on each font.
 type Faces = []Face
@@ -103,7 +102,7 @@ const (
 	EncSymbol
 )
 
-// CmapIter is an interator over a Cmap.
+// CmapIter is an iterator over a Cmap.
 type CmapIter interface {
 	// Next returns true if the iterator still has data to yield
 	Next() bool
@@ -119,7 +118,7 @@ type CmapIter interface {
 type Cmap interface {
 	// Iter returns a new iterator over the cmap
 	// Multiple iterators may be used over the same cmap
-	// The returned interface is garanted not to be nil
+	// The returned interface is guaranteed not to be nil
 	Iter() CmapIter
 
 	// Lookup avoid the construction of a map and provides
@@ -178,8 +177,9 @@ type FontExtents struct {
 type LineMetric uint8
 
 const (
-	// Distance above the baseline of the top of the underline.
-	// Since most fonts have underline positions beneath the baseline, this value is typically negative.
+	// Distance above the baseline of the top of the underline. Since most fonts
+	// have underline positions beneath the baseline, this value is typically
+	// negative.
 	UnderlinePosition LineMetric = iota
 
 	// Suggested thickness to draw for the underline.
@@ -223,8 +223,8 @@ type FaceMetrics interface {
 	// string if the glyph is invalid or has no name.
 	GlyphName(gid GID) string
 
-	// LineMetric returns the metric identified by `metric` (in fonts units), or false
-	// if the font does not provide such information.
+	// LineMetric returns the metric identified by `metric` (in fonts units), or
+	// false if the font does not provide such information.
 	LineMetric(metric LineMetric) (float32, bool)
 
 	// FontHExtents returns the extents of the font for horizontal text, or false
@@ -239,27 +239,28 @@ type FaceMetrics interface {
 	// or false if not found.
 	NominalGlyph(ch rune) (GID, bool)
 
-	// HorizontalAdvance returns the horizontal advance in font units.
-	// When no data is available but the glyph index is valid, this method
-	// should return a default value (the upem number for example).
-	// If the glyph is invalid it should return 0.
-	// `coords` is used by variable fonts, and is specified in normalized coordinates.
+	// HorizontalAdvance returns the horizontal advance in font units. When no
+	// data is available but the glyph index is valid, this method should return
+	// a default value (the upem number for example). If the glyph is invalid it
+	// should return 0. `coords` is used by variable fonts, and is specified in
+	// normalized coordinates.
 	HorizontalAdvance(gid GID) float32
 
 	// VerticalAdvance is the same as `HorizontalAdvance`, but for vertical advance.
 	VerticalAdvance(gid GID) float32
 
-	// GlyphHOrigin fetches the (X,Y) coordinates of the origin (in font units) for a glyph ID,
-	// for horizontal text segments.
-	// Returns `false` if not available.
+	// GlyphHOrigin fetches the (X,Y) coordinates of the origin (in font units)
+	// for a glyph ID, for horizontal text segments. Returns `false` if not
+	// available.
 	GlyphHOrigin(GID) (x, y int32, found bool)
 
 	// GlyphVOrigin is the same as `GlyphHOrigin`, but for vertical text segments.
 	GlyphVOrigin(GID) (x, y int32, found bool)
 
-	// GlyphExtents retrieve the extents for a specified glyph, of false, if not available.
-	// `coords` is used by variable fonts, and is specified in normalized coordinates.
-	// For bitmap glyphs, the closest resolution to `xPpem` and `yPpem` is selected.
+	// GlyphExtents retrieve the extents for a specified glyph, of false, if not
+	// available. `coords` is used by variable fonts, and is specified in
+	// normalized coordinates. For bitmap glyphs, the closest resolution to
+	// `xPpem` and `yPpem` is selected.
 	GlyphExtents(glyph GID, xPpem, yPpem uint16) (GlyphExtents, bool)
 }
 
@@ -271,7 +272,7 @@ type FaceRenderer interface {
 	GlyphData(gid GID, xPpem, yPpem uint16) GlyphData
 }
 
-// GlyphData describe how to graw a glyph.
+// GlyphData describe how to draw a glyph.
 // It is either an GlyphOutline, GlyphSVG or GlyphBitmap.
 type GlyphData interface {
 	isGlyphData()
@@ -309,9 +310,8 @@ func (pt *SegmentPoint) Move(dx, dy float32) {
 
 type Segment struct {
 	Op SegmentOp
-	// Args is up to three (x, y) coordinates, depending on the
-	// operation.
-	// The Y axis increases up.
+	// Args is up to three (x, y) coordinates, depending on the operation. The Y
+	// axis increases up.
 	Args [3]SegmentPoint
 }
 
@@ -331,7 +331,7 @@ func (s *Segment) ArgsSlice() []SegmentPoint {
 }
 
 // GlyphSVG is an SVG description for the glyph,
-// as found in Opentype SVG table.
+// as found in OpenType SVG table.
 type GlyphSVG struct {
 	// The SVG image content, decompressed if needed.
 	// The actual glyph description is an SVG element
@@ -372,13 +372,13 @@ type BitmapSize struct {
 	XPpem, YPpem  uint16
 }
 
-// FaceID represents an identifier of a face (possibly in a collection),
-// and an optional variable instance.
+// FaceID represents an identifier of a face (possibly in a collection), and an
+// optional variable instance.
 type FaceID struct {
 	File string // The filename or identifier of the font file.
 
-	// The index of the face in a collection. It is always 0 for
-	// single font files.
+	// The index of the face in a collection. It is always 0 for single font
+	// files.
 	Index uint16
 
 	// For variable fonts, stores 1 + the instance index.

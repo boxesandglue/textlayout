@@ -257,7 +257,7 @@ func parseAATLookupFormat2(data []byte, isLong bool) (classFormat2, error) {
 	return out, nil
 }
 
-// sorted accordins to `last`
+// sorted according to `last`
 type lookupFormat4 []struct {
 	values      []uint32 // length last - first + 1
 	first, last GID

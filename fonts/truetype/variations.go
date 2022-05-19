@@ -2,7 +2,7 @@ package truetype
 
 var _ FaceVariable = (*Font)(nil)
 
-// FaceVariable is an extension interface supporting Opentype variable fonts.
+// FaceVariable is an extension interface supporting OpenType variable fonts.
 // See the `Variations` method to check if a font is actually variable.
 type FaceVariable interface {
 	// Variations returns the variations for the font,
@@ -18,16 +18,16 @@ type FaceVariable interface {
 	// in normalized units.
 	VarCoordinates() []float32
 
-	// NormalizeVariations should normalize the given design-space coordinates. The minimum and maximum
-	// values for the axis are mapped to the interval [-1,1], with the default
-	// axis value mapped to 0.
-	// This should be a no-op for non-variable fonts.
+	// NormalizeVariations should normalize the given design-space coordinates.
+	// The minimum and maximum values for the axis are mapped to the interval
+	// [-1,1], with the default axis value mapped to 0. This should be a no-op
+	// for non-variable fonts.
 	NormalizeVariations(coords []float32) []float32
 }
 
-// SetVariations applies a list of font-variation settings to a font,
-// defaulting to the values given in the `fvar` table.
-// Note that passing an empty slice will instead remove the coordinates.
+// SetVariations applies a list of font-variation settings to a font, defaulting
+// to the values given in the `fvar` table. Note that passing an empty slice
+// will instead remove the coordinates.
 func SetVariations(face FaceVariable, variations []Variation) {
 	if len(variations) == 0 {
 		face.SetVarCoordinates(nil)
@@ -80,7 +80,7 @@ func (fvar TableFvar) IsDefaultInstance(it VarInstance) bool {
 	return true
 }
 
-// add the default instance if it not already explicitely present
+// add the default instance if it not already explicitly present
 func (fvar *TableFvar) checkDefaultInstance(names TableName) {
 	for _, instance := range fvar.Instances {
 		if fvar.IsDefaultInstance(instance) {
@@ -105,8 +105,9 @@ func (fvar *TableFvar) checkDefaultInstance(names TableName) {
 	fvar.Instances = append(fvar.Instances, defaultInstance)
 }
 
-// GetDesignCoordsDefault returns the design coordinates corresponding to the given pairs of axis/value.
-// The default value of the axis is used when not specified in the variations.
+// GetDesignCoordsDefault returns the design coordinates corresponding to the
+// given pairs of axis/value. The default value of the axis is used when not
+// specified in the variations.
 func (fvar *TableFvar) GetDesignCoordsDefault(variations []Variation) []float32 {
 	designCoords := make([]float32, len(fvar.Axis))
 	// start with default values
@@ -119,8 +120,9 @@ func (fvar *TableFvar) GetDesignCoordsDefault(variations []Variation) []float32 
 	return designCoords
 }
 
-// GetDesignCoords updates the design coordinates, with the given pairs of axis/value.
-// It will panic if `designCoords` has not the length expected by the table, that is the number of axis.
+// GetDesignCoords updates the design coordinates, with the given pairs of
+// axis/value. It will panic if `designCoords` has not the length expected by
+// the table, that is the number of axis.
 func (fvar *TableFvar) GetDesignCoords(variations []Variation, designCoords []float32) {
 	for _, variation := range variations {
 		// allow for multiple axis with the same tag
@@ -158,17 +160,17 @@ func (fvar *TableFvar) normalizeCoordinates(coords []float32) []float32 {
 
 func (f *Font) Variations() TableFvar { return f.fvar }
 
-// Normalizes the given design-space coordinates. The minimum and maximum
-// values for the axis are mapped to the interval [-1,1], with the default
-// axis value mapped to 0.
-// Any additional scaling defined in the face's `avar` table is also
-// applied, as described at https://docs.microsoft.com/en-us/typography/opentype/spec/avar
+// NormalizeVariations normalizes the given design-space coordinates. The
+// minimum and maximum values for the axis are mapped to the interval [-1,1],
+// with the default axis value mapped to 0. Any additional scaling defined in
+// the face's `avar` table is also applied, as described at
+// https://docs.microsoft.com/en-us/typography/opentype/spec/avar
 func (f *Font) NormalizeVariations(coords []float32) []float32 {
 	// ported from freetype2
 
 	// Axis normalization is a two-stage process.  First we normalize
 	// based on the [min,def,max] values for the axis to be [-1,0,1].
-	// Then, if there's an `avar' table, we renormalize this range.
+	// Then, if there's an `avar' table, we re-normalize this range.
 	normalized := f.fvar.normalizeCoordinates(coords)
 
 	// now applying 'avar'

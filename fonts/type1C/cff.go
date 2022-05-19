@@ -117,7 +117,7 @@ func (f *Font) NumGlyphs() int { return len(f.charstrings) }
 
 func (f *Font) PostscriptInfo() (fonts.PSInfo, bool) { return f.PSInfo, true }
 
-func (f *Font) PoscriptName() string { return f.PSInfo.FontName }
+func (f *Font) PostscriptName() string { return f.PSInfo.FontName }
 
 // Strip all subset prefixes of the form `ABCDEF+'.  Usually, there
 // is only one, but font names like `APCOOG+JFABTD+FuturaBQ-Bold'
@@ -242,7 +242,7 @@ func (f *Font) LoadSummary() (fonts.FontSummary, error) {
 	return fonts.FontSummary{
 		IsItalic:          isItalic,
 		IsBold:            isBold,
-		Familly:           familyName,
+		Family:            familyName,
 		Style:             styleName,
 		HasScalableGlyphs: true,
 		HasBitmapGlyphs:   false,

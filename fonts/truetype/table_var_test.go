@@ -205,9 +205,9 @@ func TestParseGvar(t *testing.T) {
 
 	gvarData := deHexStr("0001 0000 " + //   0: majorVersion=1 minorVersion=0
 		"0002 0000 " + //   4: axisCount=2 sharedTupleCount=0
-		"0000001C " + //   8: offsetToSharedTuples=28
+		"0000 001C " + //   8: offsetToSharedTuples=28
 		"0003 0000 " + //  12: glyphCount=3 flags=0
-		"0000001C " + //  16: offsetToGlyphVariationData=28
+		"0000 001C " + //  16: offsetToGlyphVariationData=28
 		"0000 0000 000C 002F " + //  20: offsets=[0,0,12,47], times 2: [0,0,24,94],
 		//                 //           +offsetToGlyphVariationData: [28,28,52,122]
 		//

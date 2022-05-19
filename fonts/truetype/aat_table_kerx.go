@@ -183,7 +183,7 @@ type Kern1 struct {
 func (Kern1) isKernSubtable() {}
 
 // data starts at the subtable header
-// tupleCount is optionnal
+// tupleCount is optional
 func parseKernxSubtable1(data []byte, headerLength int, extended bool, numGlyphs int, tupleCount int) (out Kern1, err error) {
 	if len(data) < headerLength {
 		return out, errors.New("invalid kern/x subtable format 1 (EOF)")
@@ -510,12 +510,12 @@ func parseKerxSubtable6(data []byte, numGlyphs, tupleCount int) (out Kerx6, err 
 		}
 		// If the tupleCount is 1 or more, then the kerning array contains offsets from the beginning
 		// of the kerningVectors table to a tupleCount-dimensional vector of FUnits controlling the kerning.
-		kerningVectorsOffet := int(binary.BigEndian.Uint32(data[12+20:]))
+		kerningVectorsOffset := int(binary.BigEndian.Uint32(data[12+20:]))
 		for i, v := range tmp {
-			if len(data) < kerningVectorsOffet+int(v)+2 {
+			if len(data) < kerningVectorsOffset+int(v)+2 {
 				return out, errors.New("invalid kerx subtable format 2 (EOF)")
 			}
-			out.kernings[i] = int16(binary.BigEndian.Uint16(data[kerningVectorsOffet+int(v):]))
+			out.kernings[i] = int16(binary.BigEndian.Uint16(data[kerningVectorsOffset+int(v):]))
 		}
 	} else {
 		// a kerning value greater than an int16 should not happen

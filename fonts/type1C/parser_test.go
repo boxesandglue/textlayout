@@ -89,7 +89,7 @@ func TestLoader(t *testing.T) {
 			t.Fatal(err)
 		}
 		for _, font := range fonts {
-			font.PoscriptName()
+			font.PostscriptName()
 			_, has := font.PostscriptInfo()
 			if !has {
 				t.Error("expected PS info")

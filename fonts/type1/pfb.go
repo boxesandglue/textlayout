@@ -76,7 +76,7 @@ type Font struct {
 
 func (f *Font) PostscriptInfo() (fonts.PSInfo, bool) { return f.PSInfo, true }
 
-func (f *Font) PoscriptName() string { return f.PSInfo.FontName }
+func (f *Font) PostscriptName() string { return f.PSInfo.FontName }
 
 func (f *Font) getStyle() (isItalic, isBold bool, familyName, styleName string) {
 	// ported from freetype/src/type1/t1objs.c
@@ -134,7 +134,7 @@ func (f *Font) LoadSummary() (fonts.FontSummary, error) {
 	return fonts.FontSummary{
 		IsItalic:          isItalic,
 		IsBold:            isBold,
-		Familly:           familyName,
+		Family:            familyName,
 		Style:             styleName,
 		HasScalableGlyphs: true,
 		HasBitmapGlyphs:   false,

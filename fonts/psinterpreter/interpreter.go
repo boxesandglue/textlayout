@@ -1,4 +1,4 @@
-// Package psinterpreter implement a Postscript interpreter
+// Package psinterpreter implements a Postscript interpreter
 // required to parse .CFF files, and Type1 and Type2 Charstrings.
 // This package provides the low-level mechanisms needed to
 // read such formats; the data is consumed in higher level packages,
@@ -41,7 +41,7 @@ const (
 	maxRealNumberStrLen = 64 // Maximum length in bytes of the "-123.456E-7" representation.
 )
 
-// PsContext is the flavour of the Postcript language.
+// PsContext is the flavour of the PostScript language.
 type PsContext uint32
 
 const (
@@ -53,7 +53,7 @@ const (
 
 type ArgStack struct {
 	Vals [psArgStackSize]int32
-	// Effecive size currently in use. The first value to
+	// Effective size currently in use. The first value to
 	// pop is at index Top-1
 	Top int32
 }
@@ -62,8 +62,8 @@ type ArgStack struct {
 // without popping the stack.
 func (a *ArgStack) Uint16() uint16 { return uint16(a.Vals[a.Top-1]) }
 
-// Float return the top level value as a real number (which is stored as its binary representation),
-// without popping the stack.
+// Float return the top level value as a real number (which is stored as its
+// binary representation), without popping the stack.
 func (a *ArgStack) Float() float32 {
 	return math.Float32frombits(uint32(a.Vals[a.Top-1]))
 }
@@ -93,7 +93,7 @@ func (a *ArgStack) PopN(numPop int32) error {
 }
 
 // Machine is a PostScript interpreter.
-// A same interpreter may be re-used using muliples `Run` calls.
+// A same interpreter may be re-used using multiples `Run` calls.
 type Machine struct {
 	localSubrs  [][]byte
 	globalSubrs [][]byte
@@ -102,7 +102,7 @@ type Machine struct {
 
 	callStack struct {
 		vals [psCallStackSize][]byte // parent instructions
-		top  int32                   // effecive size currently in use
+		top  int32                   // effective size currently in use
 	}
 	ArgStack ArgStack
 
@@ -110,8 +110,9 @@ type Machine struct {
 	ctx            PsContext
 }
 
-// SkipBytes skips the next `count` bytes from the instructions, and clears the argument stack.
-// It does nothing if `count` exceed the length of the instructions.
+// SkipBytes skips the next `count` bytes from the instructions, and clears the
+// argument stack. It does nothing if `count` exceed the length of the
+// instructions.
 func (p *Machine) SkipBytes(count int32) {
 	if int(count) >= len(p.instructions) {
 		return
@@ -137,7 +138,8 @@ func (p *Machine) hasMoreInstructions() bool {
 const escapeByte = 12
 
 // Run runs the instructions in the PostScript context asked by `handler`.
-// `localSubrs` and `globalSubrs` contains the subroutines that may be called in the instructions.
+// `localSubrs` and `globalSubrs` contains the subroutines that may be called in
+// the instructions.
 func (p *Machine) Run(instructions []byte, localSubrs, globalSubrs [][]byte, handler PsOperatorHandler) error {
 	p.ctx = handler.Context()
 	p.instructions = instructions
@@ -308,10 +310,10 @@ func subrBias(numSubroutines int) int32 {
 	return 32768
 }
 
-// CallSubroutine calls the subroutine, identified by its index, as found
-// in the instructions (that is, before applying the subroutine biased).
-// `isLocal` controls whether the local or global subroutines are used.
-// No argument stack modification is performed.
+// CallSubroutine calls the subroutine, identified by its index, as found in the
+// instructions (that is, before applying the subroutine biased). `isLocal`
+// controls whether the local or global subroutines are used. No argument stack
+// modification is performed.
 func (p *Machine) CallSubroutine(index int32, isLocal bool) error {
 	subrs := p.globalSubrs
 	if isLocal {
@@ -349,7 +351,7 @@ func (p *Machine) Return() error {
 	return nil
 }
 
-// PsOperator is a postcript command, which may be escaped.
+// PsOperator is a postscript command, which may be escaped.
 type PsOperator struct {
 	Operator  byte
 	IsEscaped bool
@@ -364,13 +366,14 @@ func (p PsOperator) String() string {
 
 // PsOperatorHandler defines the behaviour of an operator.
 type PsOperatorHandler interface {
-	// Context defines the precise behaviour of the interpreter,
-	// which has small nuances depending on the context.
+	// Context defines the precise behaviour of the interpreter, which has small
+	// nuances depending on the context.
 	Context() PsContext
 
-	// Apply implements the operator defined by `operator` (which is the second byte if `escaped` is true).
+	// Apply implements the operator defined by `operator` (which is the second
+	// byte if `escaped` is true).
 	//
-	// Returning `ErrInterrupt` stop the parsing of the instructions, without reporting an error.
-	// It can be used as an optimization.
+	// Returning `ErrInterrupt` stop the parsing of the instructions, without
+	// reporting an error. It can be used as an optimization.
 	Apply(operator PsOperator, state *Machine) error
 }

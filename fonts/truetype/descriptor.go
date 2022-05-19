@@ -17,8 +17,8 @@ func (font *Font) PostscriptInfo() (fonts.PSInfo, bool) {
 
 func (font *Font) Cmap() (fonts.Cmap, fonts.CmapEncoding) { return font.cmap, font.cmapEncoding }
 
-// PoscriptName returns the optional PoscriptName of the font
-func (font *Font) PoscriptName() string {
+// PostscriptName returns the optional PostscriptName of the font
+func (font *Font) PostscriptName() string {
 	// adapted from freetype
 
 	// scan the name table to see whether we have a Postscript name here,
@@ -94,7 +94,7 @@ func (pr *FontParser) loadSummary(font *Font) error {
 
 	// load the `hhea' and `hmtx' tables
 	if font.hhea != nil {
-		_, err := pr.HtmxTable(font.NumGlyphs)
+		_, err := pr.HmtxTable(font.NumGlyphs)
 		if err != nil {
 			return err
 		}
@@ -107,7 +107,7 @@ func (pr *FontParser) loadSummary(font *Font) error {
 
 	// try to load the `vhea' and `vmtx' tables
 	if font.vhea != nil {
-		_, err := pr.VtmxTable(font.NumGlyphs)
+		_, err := pr.VmtxTable(font.NumGlyphs)
 		out.hasVerticalInfo = err == nil
 	}
 
@@ -122,7 +122,7 @@ func (font *Font) LoadSummary() (fonts.FontSummary, error) {
 	return fonts.FontSummary{
 		IsItalic: isItalic,
 		IsBold:   isBold,
-		Familly:  familyName,
+		Family:   familyName,
 		Style:    styleName,
 		// a font with no bitmaps and no outlines is scalable;
 		// it has only empty glyphs then

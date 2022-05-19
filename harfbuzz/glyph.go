@@ -92,7 +92,7 @@ const (
 // GlyphInfo holds information about the
 // glyphs and their relation to input text.
 // They are internally created from user input,
-// and the shapping sets the `Glyph` field.
+// and the shaping sets the `Glyph` field.
 type GlyphInfo struct {
 	// Cluster is the index of the character in the original text that corresponds
 	// to this `GlyphInfo`, or whatever the client passes to `Buffer.Add()`.
@@ -106,7 +106,7 @@ type GlyphInfo struct {
 	// See Buffer.ClusterLevel for more fine-grained Cluster handling.
 	Cluster int
 
-	// input value of the shapping
+	// input value of the shaping
 	codepoint rune
 
 	// Glyph is the result of the selection of concrete glyph
@@ -202,7 +202,7 @@ func (info *GlyphInfo) isContinuation() bool {
 	return info.unicode&upropsMaskContinuation != 0
 }
 
-func (info *GlyphInfo) resetContinutation() { info.unicode &= ^upropsMaskContinuation }
+func (info *GlyphInfo) resetContinuation() { info.unicode &= ^upropsMaskContinuation }
 
 func (info *GlyphInfo) isUnicodeSpace() bool {
 	return info.unicode.generalCategory() == spaceSeparator

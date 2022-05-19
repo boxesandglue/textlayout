@@ -50,7 +50,7 @@ func TestKern(t *testing.T) {
 			// fmt.Println("	kerns (GPOS):", kern.Size())
 		}
 
-		widths, err := font.HtmxTable(ng)
+		widths, err := font.HmtxTable(ng)
 		if err != nil {
 			t.Fatal(err)
 		}

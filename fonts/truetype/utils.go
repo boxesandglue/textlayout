@@ -7,10 +7,9 @@ import (
 	"github.com/speedata/textlayout/fonts"
 )
 
-// Tag represents an open-type name.
-// These are technically uint32's, but are usually
-// displayed in ASCII as they are all acronyms.
-// See https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6.html#Overview
+// Tag represents an open-type name. These are technically uint32's, but are
+// usually displayed in ASCII as they are all acronyms. See
+// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6.html#Overview
 type Tag uint32
 
 // MustNewTag gives you the Tag corresponding to the acronym.
@@ -44,10 +43,11 @@ func (tag Tag) String() string {
 	})
 }
 
+// GID is a glyph ID
 type GID = fonts.GID
 
 // parseUint16s interprets data as a (big endian) uint16 slice.
-// It returns an error if data is not long enough for the given `length`.
+// It returns an error if data is not long enough for the given length.
 func parseUint16s(data []byte, count int) ([]uint16, error) {
 	if len(data) < 2*count {
 		return nil, errors.New("invalid uint16 array (EOF)")

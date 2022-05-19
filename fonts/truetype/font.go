@@ -57,7 +57,7 @@ type Font struct {
 	post       TablePost // optional
 	svg        tableSVG  // optional
 
-	// Optionnal, only present in variable fonts
+	// Optional, only present in variable fonts
 
 	varCoords  []float32   // coordinates in usage, may be nil
 	hvar, vvar *tableHVvar // optional
@@ -73,7 +73,7 @@ type Font struct {
 
 	OS2 *TableOS2 // optional
 
-	// graphite font, optionnal
+	// graphite font, optional
 	Graphite *GraphiteTables
 
 	// Advanced layout tables.
@@ -98,7 +98,7 @@ type Font struct {
 }
 
 // LayoutTables exposes advanced layout tables.
-// All the fields are optionnals.
+// All fields are optional.
 type LayoutTables struct {
 	GDEF TableGDEF // An absent table has a nil Class
 	Trak TableTrak

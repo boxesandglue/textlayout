@@ -20,7 +20,7 @@ type FontParser struct {
 
 	Type Tag
 
-	// True for fonts which include a 'hbed' table instead
+	// True for fonts which include a 'bhed' table instead
 	// of a 'head' table. Apple uses it as a flag that a font doesn't have
 	// any glyph outlines but only embedded bitmaps
 	isBinary bool
@@ -368,9 +368,9 @@ func (pr *FontParser) NumGlyphs() (int, error) {
 	return parseTableMaxp(buf)
 }
 
-// HtmxTable returns the glyphs horizontal metrics (array of size numGlyphs),
+// HmtxTable returns the glyphs horizontal metrics (array of size numGlyphs),
 // expressed in fonts units.
-func (pr *FontParser) HtmxTable(numGlyphs int) (TableHVmtx, error) {
+func (pr *FontParser) HmtxTable(numGlyphs int) (TableHVmtx, error) {
 	hhea, err := pr.HheaTable()
 	if err != nil {
 		return nil, err
@@ -384,9 +384,9 @@ func (pr *FontParser) HtmxTable(numGlyphs int) (TableHVmtx, error) {
 	return parseHVmtxTable(buf, hhea.numOfLongMetrics, uint16(numGlyphs))
 }
 
-// VtmxTable returns the glyphs vertical metrics (array of size numGlyphs),
+// VmtxTable returns the glyphs vertical metrics (array of size numGlyphs),
 // expressed in fonts units.
-func (pr *FontParser) VtmxTable(numGlyphs int) (TableHVmtx, error) {
+func (pr *FontParser) VmtxTable(numGlyphs int) (TableHVmtx, error) {
 	vhea, err := pr.VheaTable()
 	if err != nil {
 		return nil, err
@@ -695,8 +695,8 @@ func (pr *FontParser) loadTables() (*Font, error) {
 
 	out.hhea, _ = pr.HheaTable()
 	out.vhea, _ = pr.VheaTable()
-	out.Hmtx, _ = pr.HtmxTable(out.NumGlyphs)
-	out.vmtx, _ = pr.VtmxTable(out.NumGlyphs)
+	out.Hmtx, _ = pr.HmtxTable(out.NumGlyphs)
+	out.vmtx, _ = pr.VmtxTable(out.NumGlyphs)
 
 	if len(out.fvar.Axis) != 0 {
 		out.mvar, _ = pr.mvarTable(out.fvar)

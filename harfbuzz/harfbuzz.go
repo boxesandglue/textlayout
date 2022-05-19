@@ -113,16 +113,16 @@ type SegmentProperties struct {
 	Direction Direction
 }
 
-// ShappingOptions controls some fine tunning of the shaping
+// ShapingOptions controls some fine tunning of the shaping
 // (see the constants).
-type ShappingOptions uint16
+type ShapingOptions uint16
 
 const (
 	// Flag indicating that special handling of the beginning
 	// of text paragraph can be applied to this buffer. Should usually
 	// be set, unless you are passing to the buffer only part
 	// of the text without the full context.
-	Bot ShappingOptions = 1 << iota
+	Bot ShapingOptions = 1 << iota
 	// Flag indicating that special handling of the end of text
 	// paragraph can be applied to this buffer, similar to
 	// `Bot`.

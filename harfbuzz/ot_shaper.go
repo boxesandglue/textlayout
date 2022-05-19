@@ -650,7 +650,7 @@ func (c *otContext) positionComplex() {
 	* hanging over the next glyph after the final reordering.
 	*
 	* Note: If fallback positioning happens, we don't care about
-	* this as it will be overriden. */
+	* this as it will be overridden. */
 	adjustOffsetsWhenZeroing := c.plan.adjustMarkPositioningWhenZeroing && c.buffer.Props.Direction.isForward()
 
 	// we change glyph origin to what GPOS expects (horizontal), apply GPOS, change it back.
@@ -734,20 +734,20 @@ func propagateFlags(buffer *Buffer) {
 	}
 }
 
-// shaperOpentype is the main shaper of this library.
-// It handles complex language and Opentype layout features found in fonts.
-type shaperOpentype struct {
+// shaperOpenType is the main shaper of this library.
+// It handles complex language and OpenType layout features found in fonts.
+type shaperOpenType struct {
 	tables *tt.LayoutTables
 	plan   otShapePlan
 	key    otShapePlanKey
 }
 
-var _ shaper = (*shaperOpentype)(nil)
+var _ shaper = (*shaperOpenType)(nil)
 
 type otShapePlanKey = [2]int // -1 for not found
 
-func newShaperOpentype(tables *tt.LayoutTables, coords []float32) *shaperOpentype {
-	var out shaperOpentype
+func newShaperOpenType(tables *tt.LayoutTables, coords []float32) *shaperOpenType {
+	var out shaperOpenType
 	out.key = otShapePlanKey{
 		0: tables.GSUB.FindVariationIndex(coords),
 		1: tables.GPOS.FindVariationIndex(coords),
@@ -756,14 +756,14 @@ func newShaperOpentype(tables *tt.LayoutTables, coords []float32) *shaperOpentyp
 	return &out
 }
 
-func (shaperOpentype) kind() shaperKind { return skOpentype }
+func (shaperOpenType) kind() shaperKind { return skOpenType }
 
-func (sp *shaperOpentype) compile(props SegmentProperties, userFeatures []Feature) {
+func (sp *shaperOpenType) compile(props SegmentProperties, userFeatures []Feature) {
 	sp.plan.init0(sp.tables, props, userFeatures, sp.key)
 }
 
 // pull it all together!
-func (sp *shaperOpentype) shape(font *Font, buffer *Buffer, features []Feature) {
+func (sp *shaperOpenType) shape(font *Font, buffer *Buffer, features []Feature) {
 	c := otContext{plan: &sp.plan, font: font, face: font.face, buffer: buffer, userFeatures: features}
 	c.buffer.scratchFlags = bsfDefault
 

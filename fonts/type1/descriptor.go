@@ -10,7 +10,7 @@ import (
 
 var _ fonts.FontDescriptor = (*fontDescriptor)(nil)
 
-// only parses the ASCII segment, defering
+// only parses the ASCII segment, deferring
 // the charstring extraction to LoadCmap
 type fontDescriptor struct {
 	info     fonts.PSInfo

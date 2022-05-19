@@ -20,7 +20,7 @@ import (
 // overlapping ranges the value of the feature with the higher index takes
 // precedence.
 //
-// The shapping plan depends on the font capabilities. See `NewFont` and `Face` and
+// The shaping plan depends on the font capabilities. See `NewFont` and `Face` and
 // its extension interfaces for more details.
 //
 // It also depends on the properties of the segment of text : the `Props`
@@ -34,12 +34,12 @@ type shaperKind uint8
 
 const (
 	skFallback shaperKind = iota
-	skOpentype
+	skOpenType
 	skGraphite
 )
 
 // shaper shapes a string of runes.
-// Depending on the font used, different shapers will be choosen.
+// Depending on the font used, different shapers will be chosen.
 type shaper interface {
 	kind() shaperKind
 
@@ -90,7 +90,7 @@ func (plan *shapePlan) init(copy bool, font *Font, props SegmentProperties,
 	if font.gr != nil {
 		plan.shaper = (*shaperGraphite)(font.gr)
 	} else if font.otTables != nil {
-		plan.shaper = newShaperOpentype(font.otTables, coords)
+		plan.shaper = newShaperOpenType(font.otTables, coords)
 	} else {
 		plan.shaper = shaperFallback{}
 	}

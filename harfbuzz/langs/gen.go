@@ -554,11 +554,11 @@ func (pr *OpenTypeRegistryParser) addLanguage(bcp47Tag, otTag string) {
 	pr.fromBCP47[bcp47Tag] = from
 
 	if _, in := bcp47.grandfathered[strings.ToLower(bcp47Tag)]; !in {
-		splitted := strings.SplitN(bcp47Tag, "-", 2)
-		if len(splitted) != 2 {
+		split := strings.SplitN(bcp47Tag, "-", 2)
+		if len(split) != 2 {
 			return
 		}
-		macrolanguage, suffix := splitted[0], splitted[1]
+		macrolanguage, suffix := split[0], split[1]
 		if v, ok := bcp47.macrolanguages[macrolanguage]; ok {
 			s := make(map[string]bool)
 			for language := range v {

@@ -60,7 +60,7 @@ type Buffer struct {
 	// and its original Cluster value.
 	Info []GlyphInfo
 
-	// Pos gives the position of the glyphs resulting from the shapping
+	// Pos gives the position of the glyphs resulting from the shaping
 	// It has the same length has `Info`.
 	Pos []GlyphPosition
 
@@ -68,7 +68,7 @@ type Buffer struct {
 	// Index 0 is for "pre-Context", 1 for "post-Context".
 	context [2][]rune
 
-	// temporary storage, usully used the following way:
+	// temporary storage, usually used the following way:
 	// 	- truncate the slice
 	//	- walk through Info and append glyphs to outInfo
 	//	- swap back Into and outInfo with 'swapBuffers'
@@ -88,7 +88,7 @@ type Buffer struct {
 	NotFound fonts.GID
 
 	// Information about how the text in the buffer should be treated.
-	Flags ShappingOptions
+	Flags ShapingOptions
 	// Precise the cluster handling behavior.
 	ClusterLevel ClusterLevel
 
@@ -108,7 +108,7 @@ type Buffer struct {
 }
 
 // NewBuffer allocate a storage with default options.
-// It should then be populated with `AddRunes` and shapped with `Shape`.
+// It should then be populated with `AddRunes` and shaped with `Shape`.
 func NewBuffer() *Buffer {
 	return &Buffer{
 		ClusterLevel: MonotoneGraphemes,
@@ -236,11 +236,11 @@ func (b *Buffer) Clear() {
 	b.serial = 0
 }
 
-// cur returns the glyph at the cursor, optionaly shifted by `i`.
+// cur returns the glyph at the cursor, optionally shifted by `i`.
 // Its simply a syntactic sugar for `&b.Info[b.idx+i] `
 func (b *Buffer) cur(i int) *GlyphInfo { return &b.Info[b.idx+i] }
 
-// cur returns the position at the cursor, optionaly shifted by `i`.
+// cur returns the position at the cursor, optionally shifted by `i`.
 // Its simply a syntactic sugar for `&b.Pos[b.idx+i]
 func (b *Buffer) curPos(i int) *GlyphPosition { return &b.Pos[b.idx+i] }
 
@@ -312,7 +312,7 @@ func (b *Buffer) replaceGlyphs(numIn int, codepoints []rune, glyphs []fonts.GID)
 }
 
 // makes a copy of the glyph at idx to output and replace in output `codepoint`
-// by `r`. Does NOT adavance `idx`
+// by `r`. Does NOT advance `idx`
 func (b *Buffer) outputRune(r rune) {
 	b.replaceGlyphs(0, []rune{r}, nil)
 }
@@ -530,7 +530,7 @@ func (b *Buffer) clearGlyphFlags(mask GlyphMask) {
 	}
 }
 
-// reverses the subslice [start:end] of the buffer contents
+// reverses the sub slice [start:end] of the buffer contents
 func (b *Buffer) reverseRange(start, end int) {
 	if end-start < 2 {
 		return
@@ -584,7 +584,7 @@ func (b *Buffer) reverseGroups(groupFunc func(*GlyphInfo, *GlyphInfo) bool, merg
 
 // swap back the temporary outInfo buffer to `Info`
 // and resets the cursor `idx`.
-// Assume that haveOutput is true, and toogle it.
+// Assume that haveOutput is true, and toggle it.
 func (b *Buffer) swapBuffers() {
 	b.nextGlyphs(len(b.Info) - b.idx)
 	b.haveOutput = false

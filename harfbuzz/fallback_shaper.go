@@ -5,7 +5,7 @@ package harfbuzz
 var _ shaper = shaperFallback{}
 
 // shaperFallback implements a naive shaper, which does the minimum,
-// without requiring advanced Opentype font features.
+// without requiring advanced OpenType font features.
 type shaperFallback struct{}
 
 func (shaperFallback) kind() shaperKind { return skFallback }

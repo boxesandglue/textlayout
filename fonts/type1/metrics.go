@@ -120,7 +120,7 @@ var _ fonts.FaceRenderer = (*Font)(nil)
 
 // GlyphData returns the outlines of the given glyph.
 // The returned value is either a fonts.GlyphOutline or nil if an error
-// occured.
+// occurred.
 func (f *Font) GlyphData(gid fonts.GID, _, _ uint16) fonts.GlyphData {
 	segments, _, _, err := f.loadGlyph(gid, false)
 	if err != nil {

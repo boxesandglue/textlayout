@@ -13,7 +13,7 @@ type fvarHeader struct {
 
 type VarAxis struct {
 	Tag     Tag       // Tag identifying the design variation for the axis.
-	Minimum Float1616 // mininum value on the variation axis that the font covers
+	Minimum Float1616 // minium value on the variation axis that the font covers
 	Default Float1616 // default position on the axis
 	Maximum Float1616 // maximum value on the variation axis that the font covers
 	flags   uint16    // Axis qualifiers — see details below.

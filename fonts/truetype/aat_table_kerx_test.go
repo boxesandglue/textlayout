@@ -41,7 +41,7 @@ func TestKern0(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	expecteds := []struct { // value extracted from harfbuzz run
+	expected := []struct { // value extracted from harfbuzz run
 		left, right GID
 		kerning     int16
 	}{
@@ -114,7 +114,7 @@ func TestKern0(t *testing.T) {
 		{1059, 65535, 0},
 	}
 
-	for _, exp := range expecteds {
+	for _, exp := range expected {
 		got := kerx.KernPair(exp.left, exp.right)
 		if got != exp.kerning {
 			t.Fatalf("kerx6 - for (%d,%d), expected %d, got %d", exp.left, exp.right, exp.kerning, got)
