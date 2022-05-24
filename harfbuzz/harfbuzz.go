@@ -1,8 +1,8 @@
 // Package harfbuzz provides advanced text layout for various scripts and languages,
-// with font-aware substitutions and positionning.
+// with font-aware substitutions and positioning.
 //
 // Given a font and an input specified as runes, the package shapes this input
-// and returns a slice of positionned glyphs, identified by their index in the font.
+// and returns a slice of positioned glyphs, identified by their index in the font.
 // See `Buffer` and its methods for more details.
 //
 // This package is a direct port of the C/C++ library.
@@ -26,7 +26,7 @@ import (
 // debugMode is only used in test:
 // 	0 : nothing
 //  1 : only the main steps are printed
-// 	2 : details informations are printed
+// 	2 : detailed information is printed
 const debugMode = 0
 
 // Direction is the text direction.
@@ -66,12 +66,12 @@ func getHorizontalDirection(script language.Script) Direction {
 	return LeftToRight
 }
 
-// Tests whether a text direction is horizontal. Requires
-// that the direction be valid.
+// Tests whether a text direction is horizontal. Requires that the direction be
+// valid.
 func (dir Direction) isHorizontal() bool { return dir & ^Direction(1) == 4 }
 
-// Tests whether a text direction is vertical. Requires
-// that the direction be valid.
+// Tests whether a text direction is vertical. Requires that the direction be
+// valid.
 func (dir Direction) isVertical() bool { return dir & ^Direction(1) == 6 }
 
 // Tests whether a text direction moves backward (from right to left, or from
@@ -82,21 +82,20 @@ func (dir Direction) isBackward() bool { return dir & ^Direction(2) == 5 }
 // top to bottom). Requires that the direction be valid.
 func (dir Direction) isForward() bool { return dir & ^Direction(2) == 4 }
 
-// Reverses a text direction. Requires that the direction
-// is valid.
+// Reverse reverses a text direction. Requires that the direction is valid.
 func (dir Direction) Reverse() Direction {
 	return dir ^ 1
 }
 
 // SegmentProperties holds various text properties of a `Buffer`.
 type SegmentProperties struct {
-	// Languages are crucial for selecting which OpenType feature to apply to the
-	// buffer which can result in applying language-specific behaviour. Languages
-	// are orthogonal to the scripts, and though they are related, they are
-	// different concepts and should not be confused with each other.
+	// Languages are crucial for selecting which OpenType feature to apply to
+	// the buffer which can result in applying language-specific behavior.
+	// Languages are orthogonal to the scripts, and though they are related,
+	// they are different concepts and should not be confused with each other.
 	Language language.Language
 
-	// Script is crucial for choosing the proper shaping behaviour for scripts that
+	// Script is crucial for choosing the proper shaping behavior for scripts that
 	// require it (e.g. Arabic) and the OpenType features defined in the font
 	// to be applied.
 	//
@@ -286,8 +285,8 @@ func (p *parser) parseTag() (tt.Tag, error) {
 	tag := tt.MustNewTag(string(tagBytes[:]))
 
 	if quote != 0 {
-		/* CSS expects exactly four bytes.  And we only allow quotations for
-		 * CSS compatibility.  So, enforce the length. */
+		// CSS expects exactly four bytes. And we only allow quotations for CSS
+		// compatibility.  So, enforce the length.
 		if p.pos != start+4 {
 			return 0, errors.New("tag must have 4 bytes")
 		}
@@ -347,7 +346,7 @@ func (p *parser) parseFeatureIndices() (start, end int, err error) {
 	}
 
 	if !p.parseChar(']') {
-		return 0, 0, errors.New("expecting closing bracked after feature indices")
+		return 0, 0, errors.New("expecting closing bracket after feature indices")
 	}
 
 	return start, end, nil
@@ -355,9 +354,9 @@ func (p *parser) parseFeatureIndices() (start, end int, err error) {
 
 // return true if a value was specified
 func (p *parser) parseFeatureValuePostfix() (uint32, bool) {
-	/* CSS doesn't use equal-sign between tag and value.
-	 * If there was an equal-sign, then there *must* be a value.
-	 * A value without an equal-sign is ok, but not required. */
+	// CSS doesn't use equal-sign between tag and value.
+	//  If there was an equal-sign, then there *must* be a value.
+	//  A value without an equal-sign is ok, but not required.
 	p.parseChar('=')
 
 	val, hadValue := p.parseUint32()

@@ -364,9 +364,9 @@ func (p PsOperator) String() string {
 	return fmt.Sprintf("1-byte operator (%d)", p.Operator)
 }
 
-// PsOperatorHandler defines the behaviour of an operator.
+// PsOperatorHandler defines the behavior of an operator.
 type PsOperatorHandler interface {
-	// Context defines the precise behaviour of the interpreter, which has small
+	// Context defines the precise behavior of the interpreter, which has small
 	// nuances depending on the context.
 	Context() PsContext
 

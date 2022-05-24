@@ -5,7 +5,11 @@
 // It does not currently support CIDType1 fonts.
 package fonts
 
-import "math"
+import (
+	"io"
+	"math"
+	"sort"
+)
 
 // Resource is a combination of io.Reader, io.Seeker and io.ReaderAt.
 // This interface is satisfied by most things that you'd want
@@ -65,6 +69,25 @@ type FaceMetadata interface {
 	LoadBitmaps() []BitmapSize
 }
 
+// Subsetter implements the Subset() method to create a subset of the font which
+// contains only the code for the codepoints. The returned byte slice can be
+// used in PDF.
+type Subsetter interface {
+	Subset(codepoints []GID) error
+	WriteSubset(w io.Writer) error
+	WidthsPDF() string
+	CMapPDF() string
+	AscenderPDF() int
+	DescenderPDF() int
+	CapHeightPDF() int
+	BoundingBoxPDF() string
+	FlagsPDF() int
+	ItalicAnglePDF() int
+	StemVPDF() int
+	XHeightPDF() int
+	NamePDF() string
+}
+
 // Face provides a unified access to various font formats.
 // It describes the content of one font from a font file.
 // Implementation must be pointer to simplify caching and hashing.
@@ -72,6 +95,7 @@ type Face interface {
 	FaceMetadata
 	FaceMetrics
 	FaceRenderer
+	Subsetter
 }
 
 // Faces is the parsed content of a font resource.
@@ -89,6 +113,39 @@ type FontLoader = func(file Resource) (Faces, error)
 // It is mostly internal to the font and should not be confused with
 // Unicode code points.
 type GID uint32
+
+// SortByGID allows the GID to be sorted in ascending order
+type SortByGID []GID
+
+func (a SortByGID) Len() int           { return len(a) }
+func (a SortByGID) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (a SortByGID) Less(i, j int) bool { return a[i] < a[j] }
+
+// SliceType is a generic sortable slice type
+type SliceType interface {
+	~string | ~int | ~float64 | GID
+}
+
+func RemoveDuplicates[T SliceType](s []T) []T {
+	if len(s) < 1 {
+		return s
+	}
+
+	// sort
+	sort.SliceStable(s, func(i, j int) bool {
+		return s[i] < s[j]
+	})
+
+	prev := 1
+	for curr := 1; curr < len(s); curr++ {
+		if s[curr-1] != s[curr] {
+			s[prev] = s[curr]
+			prev++
+		}
+	}
+
+	return s[:prev]
+}
 
 // EmptyGlyph represents an invisible glyph, which should not be drawn,
 // but whose advance and offsets should still be accounted for when rendering.

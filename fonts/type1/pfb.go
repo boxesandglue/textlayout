@@ -3,6 +3,7 @@ package type1
 import (
 	"errors"
 	"fmt"
+	"io"
 	"strings"
 
 	"github.com/speedata/textlayout/fonts"
@@ -42,7 +43,7 @@ func Parse(pfb fonts.Resource) (*Font, error) {
 	// changed accordingly
 	font.checkAndSwapGlyphNotdef()
 
-	font.synthetizeCmap()
+	font.synthesizeCmap()
 
 	return &font, nil
 }
@@ -57,7 +58,7 @@ type charstring struct {
 // entry, which defines the "builtin encoding" of the font.
 type Font struct {
 	Encoding *simpleencodings.Encoding
-	cmap     fonts.CmapSimple // see synthetizeCmap
+	cmap     fonts.CmapSimple // see synthesizeCmap
 
 	FontID      string
 	FontBBox    []Fl
@@ -144,7 +145,7 @@ func (f *Font) LoadSummary() (fonts.FontSummary, error) {
 
 // font metrics
 
-// fix the potentail misplaced .notdef glyphs
+// fix the potential misplaced .notdef glyphs
 func (f *Font) checkAndSwapGlyphNotdef() {
 	if len(f.charstrings) == 0 || f.charstrings[0].name == Notdef {
 		return
@@ -160,7 +161,7 @@ func (f *Font) checkAndSwapGlyphNotdef() {
 
 // Type1 fonts have no natural notion of Unicode code points
 // We use a glyph names table to identify the most commonly used runes
-func (f *Font) synthetizeCmap() {
+func (f *Font) synthesizeCmap() {
 	f.cmap = make(map[rune]fonts.GID)
 	for gid, charstring := range f.charstrings {
 		glyphName := charstring.name
@@ -260,3 +261,69 @@ func (f *Font) glyphIndexFromStandardCode(code int32) (fonts.GID, error) {
 }
 
 func (Font) LoadBitmaps() []fonts.BitmapSize { return nil }
+
+// NamePDF returns the PDF name of the font.
+func (f *Font) NamePDF() string {
+	panic("not implemented")
+}
+
+// WidthsPDF returns a width entry suitable for embedding in a PDF file.
+func (f *Font) WidthsPDF() string {
+	panic("not implemented")
+}
+
+// CMapPDF returns a CMap string to be used in a PDF file
+func (f *Font) CMapPDF() string {
+	panic("not implemented")
+}
+
+// AscenderPDF returns the /Ascent value for the PDF file
+func (f *Font) AscenderPDF() int {
+	panic("not implemented")
+}
+
+// DescenderPDF returns the /Descent value for the PDF file
+func (f *Font) DescenderPDF() int {
+	panic("not implemented")
+}
+
+// CapHeightPDF returns the /CapHeight value for the PDF file
+func (f *Font) CapHeightPDF() int {
+	panic("not implemented")
+}
+
+// BoundingBoxPDF returns the /FontBBox value for the PDF file
+func (f *Font) BoundingBoxPDF() string {
+	panic("not implemented")
+}
+
+// FlagsPDF returns the /Flags value for the PDF file
+func (f *Font) FlagsPDF() int {
+	panic("not implemented")
+}
+
+// ItalicAnglePDF returns the /ItalicAngle value for the PDF file
+func (f *Font) ItalicAnglePDF() int {
+	panic("not implemented")
+}
+
+// StemVPDF returns the /StemV value for the PDF file
+func (f *Font) StemVPDF() int {
+	panic("not implemented")
+}
+
+// XHeightPDF returns the /XHeight value for the PDF file
+func (f *Font) XHeightPDF() int {
+	panic("not implemented")
+}
+
+// Subset removes all data from the font except the one needed for the given
+// code points.
+func (f *Font) Subset(codepoints []fonts.GID) error {
+	panic("not implemented")
+}
+
+// WriteSubset writes a valid font to w that is suitable for including in PDF
+func (f *Font) WriteSubset(w io.Writer) error {
+	panic("not implemented")
+}

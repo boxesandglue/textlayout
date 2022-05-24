@@ -7,14 +7,7 @@ import (
 
 var errInvalidMaxpTable = errors.New("invalid maxp table")
 
-func parseTableMaxp(input []byte) (numGlyphs int, err error) {
-	if len(input) < 6 {
-		return 0, errInvalidMaxpTable
-	}
-	out := binary.BigEndian.Uint16(input[4:6])
-	return int(out), nil
-}
-
+// TableHVmtx contains advance width and side bearings for each glyph.
 type TableHVmtx []Metric // with length numGlyphs
 
 // return the base side bearing, handling invalid glyph index
@@ -25,6 +18,7 @@ func (t TableHVmtx) getSideBearing(glyph GID) int16 {
 	return t[glyph].SideBearing
 }
 
+// Metric contains the advance and side bearing of each glyph.
 type Metric struct {
 	Advance, SideBearing int16
 }
@@ -44,7 +38,7 @@ func parseHVmtxTable(input []byte, numberOfHMetrics, numGlyphs uint16) (TableHVm
 		widths[i].SideBearing = int16(binary.BigEndian.Uint16(input[4*i+2:]))
 	}
 	if left := int(numGlyphs) - int(numberOfHMetrics); left > 0 {
-		// avances are padded with the last value
+		// advances are padded with the last value
 		// side bearings are given
 		widths = append(widths, make(TableHVmtx, numGlyphs-numberOfHMetrics)...)
 		lastWidth := widths[numberOfHMetrics-1]

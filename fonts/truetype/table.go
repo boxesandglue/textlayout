@@ -23,12 +23,16 @@ var (
 	TagGsub = MustNewTag("GSUB")
 	// TagGdef represents the 'GDEF' table, which contains various Glyph Definitions
 	TagGdef = MustNewTag("GDEF")
+	// tagCvt represents the 'cvt ' table, the Control Value Table
+	tagCvt = MustNewTag("cvt ")
+	// TagSilf represents the main Graphite table
+	TagSilf = MustNewTag("Silf")
+	// tagPrep
+	tagPrep = MustNewTag("prep")
 
 	tagCmap = MustNewTag("cmap")
 	tagKern = MustNewTag("kern")
 	tagPost = MustNewTag("post")
-	TagSilf = MustNewTag("Silf")
-	TagPrep = MustNewTag("prep")
 	tagLoca = MustNewTag("loca")
 	tagGlyf = MustNewTag("glyf")
 	tagCFF  = MustNewTag("CFF ")

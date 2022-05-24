@@ -23,12 +23,12 @@ type TableHead struct {
 	LowestRecPPEM      uint16
 	FontDirection      int16
 	indexToLocFormat   int16
-	// glyphDataFormat    int16
+	glyphDataFormat    int16
 }
 
 func parseTableHead(data []byte) (out TableHead, err error) {
 	const headerSize = 54
-	if len(data) < 54 {
+	if len(data) < headerSize {
 		return TableHead{}, errors.New("invalid 'head' table (EOF)")
 	}
 	// out.VersionMajor = binary.BigEndian.Uint16(data)
@@ -48,7 +48,7 @@ func parseTableHead(data []byte) (out TableHead, err error) {
 	out.LowestRecPPEM = binary.BigEndian.Uint16(data[46:])
 	out.FontDirection = int16(binary.BigEndian.Uint16(data[48:]))
 	out.indexToLocFormat = int16(binary.BigEndian.Uint16(data[50:]))
-	// out.glyphDataFormat = int16(binary.BigEndian.Uint16(data[52:]))
+	out.glyphDataFormat = int16(binary.BigEndian.Uint16(data[52:]))
 	return out, err
 }
 
@@ -57,11 +57,12 @@ func (table *TableHead) ExpectedChecksum() uint32 {
 	return 0xB1B0AFBA - table.checkSumAdjustment
 }
 
-func (head *TableHead) Upem() uint16 {
-	if head.UnitsPerEm < 16 || head.UnitsPerEm > 16384 {
+// Upem returns the units per em
+func (table *TableHead) Upem() uint16 {
+	if table.UnitsPerEm < 16 || table.UnitsPerEm > 16384 {
 		return 1000
 	}
-	return head.UnitsPerEm
+	return table.UnitsPerEm
 }
 
 // type TableHead struct {

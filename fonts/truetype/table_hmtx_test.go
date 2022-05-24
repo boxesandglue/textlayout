@@ -8,7 +8,7 @@ import (
 	testdata "github.com/benoitkugler/textlayout-testdata/truetype"
 )
 
-func TestHtmx(t *testing.T) {
+func TestHmtx(t *testing.T) {
 	for _, file := range []string{
 		"Roboto-BoldItalic.ttf",
 		"Raleway-v4020-Regular.otf",

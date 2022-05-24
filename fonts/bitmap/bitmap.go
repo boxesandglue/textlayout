@@ -531,3 +531,69 @@ func (fd fontDescriptor) LoadCmap() (fonts.Cmap, error) {
 
 	return &cmap, nil
 }
+
+// NamePDF returns the PDF name of the font.
+func (f *Font) NamePDF() string {
+	panic("not implemented")
+}
+
+// WidthsPDF returns a width entry suitable for embedding in a PDF file.
+func (f *Font) WidthsPDF() string {
+	panic("not implemented")
+}
+
+// CMapPDF returns a CMap string to be used in a PDF file
+func (f *Font) CMapPDF() string {
+	panic("not implemented")
+}
+
+// AscenderPDF returns the /Ascent value for the PDF file
+func (f *Font) AscenderPDF() int {
+	panic("not implemented")
+}
+
+// DescenderPDF returns the /Descent value for the PDF file
+func (f *Font) DescenderPDF() int {
+	panic("not implemented")
+}
+
+// CapHeightPDF returns the /CapHeight value for the PDF file
+func (f *Font) CapHeightPDF() int {
+	panic("not implemented")
+}
+
+// BoundingBoxPDF returns the /FontBBox value for the PDF file
+func (f *Font) BoundingBoxPDF() string {
+	panic("not implemented")
+}
+
+// FlagsPDF returns the /Flags value for the PDF file
+func (f *Font) FlagsPDF() int {
+	panic("not implemented")
+}
+
+// ItalicAnglePDF returns the /ItalicAngle value for the PDF file
+func (f *Font) ItalicAnglePDF() int {
+	panic("not implemented")
+}
+
+// StemVPDF returns the /StemV value for the PDF file
+func (f *Font) StemVPDF() int {
+	panic("not implemented")
+}
+
+// XHeightPDF returns the /XHeight value for the PDF file
+func (f *Font) XHeightPDF() int {
+	panic("not implemented")
+}
+
+// Subset removes all data from the font except the one needed for the given
+// code points.
+func (f *Font) Subset(codepoints []fonts.GID) error {
+	panic("not implemented")
+}
+
+// WriteSubset writes a valid font to w that is suitable for including in PDF
+func (f *Font) WriteSubset(w io.Writer) error {
+	panic("not implemented")
+}

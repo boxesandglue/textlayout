@@ -41,14 +41,16 @@ func parseTableGlyf(data []byte, locaOffsets []uint32) (TableGlyf, error) {
 	out := make(TableGlyf, len(locaOffsets)-1)
 	var err error
 	for i := range out {
+		lenData := locaOffsets[i+1] - locaOffsets[i]
 		// If a glyph has no outline, then loca[n] = loca [n+1].
-		if locaOffsets[i] == locaOffsets[i+1] {
+		if lenData == 0 {
 			continue
 		}
 		out[i], err = parseGlyphData(data, locaOffsets[i])
 		if err != nil {
 			return nil, err
 		}
+		out[i].rawdata = data[locaOffsets[i]:locaOffsets[i+1]]
 	}
 	return out, nil
 }
@@ -73,8 +75,8 @@ func (c *contourPoint) transform(matrix [4]float32) {
 }
 
 type GlyphData struct {
-	data interface{ isGlyphData() } // nil for absent glyphs
-
+	data                   interface{ isGlyphData() } // nil for absent glyphs
+	rawdata                []byte
 	Xmin, Ymin, Xmax, Ymax int16
 }
 

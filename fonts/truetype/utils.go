@@ -3,9 +3,17 @@ package truetype
 import (
 	"encoding/binary"
 	"errors"
+	"io"
 
 	"github.com/speedata/textlayout/fonts"
 )
+
+func binaryread(r io.Reader, data interface{}) {
+	err := binary.Read(r, binary.BigEndian, data)
+	if err != nil {
+		panic(err)
+	}
+}
 
 // Tag represents an open-type name. These are technically uint32's, but are
 // usually displayed in ASCII as they are all acronyms. See

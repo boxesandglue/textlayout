@@ -41,13 +41,14 @@ type gid = uint16
 // Font represents a SFNT font, which is the underlying representation found
 // in .otf and .ttf files.
 // SFNT is a container format, which contains a number of tables identified by
-// Tags. Depending on the type of glyphs embedded in the file which tables will
+// tags. Depending on the type of glyphs embedded in the file which tables will
 // exist. In particular, there's a big different between TrueType glyphs (usually .ttf)
 // and CFF/PostScript Type 2 glyphs (usually .otf)
 type Font struct {
 	cmap         Cmap
 	cmapVar      unicodeVariations
 	cmapEncoding fonts.CmapEncoding
+	knowTables   map[Tag]bool
 
 	Names TableName
 
@@ -65,6 +66,7 @@ type Font struct {
 	mvar       TableMvar
 	gvar       tableGvar
 	fvar       TableFvar
+	Maxp       TableMaxp
 
 	Glyf       TableGlyf
 	vmtx, Hmtx TableHVmtx
@@ -95,6 +97,21 @@ type Font struct {
 
 	// HasHint is true if the font has a prep table.
 	HasHint bool
+
+	// A six letter string for PDF inclusion. Empty until Subset() is called.
+	SubsetID string
+
+	// all codepoints in the subset
+	subsetCodepoints []GID
+
+	// store the glyph offsets when writing the glyf table
+	glyphOffsets []uint32
+
+	// The prep table
+	prep []byte
+
+	// The cvt table
+	cvt []byte
 }
 
 // LayoutTables exposes advanced layout tables.

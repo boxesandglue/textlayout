@@ -190,7 +190,7 @@ func LoadGraphite(font *truetype.Font) (*GraphiteFace, error) {
 	out.cmap, _ = font.Cmap()
 	out.names = font.Names
 
-	htmx, glyphs := font.Hmtx, font.Glyf
+	hmtx, glyphs := font.Hmtx, font.Glyf
 	tables := font.Graphite
 
 	out.sill, err = parseTableSill(tables.Sill)
@@ -219,13 +219,13 @@ func LoadGraphite(font *truetype.Font) (*GraphiteFace, error) {
 		return nil, err
 	}
 
-	out.preprocessGlyphsAttributes(glyphs, htmx, attrs)
+	out.preprocessGlyphsAttributes(glyphs, hmtx, attrs)
 
 	return &out, nil
 }
 
-// process the 'glyf', 'htmx' and 'glat' tables to extract relevant info.
-func (f *GraphiteFace) preprocessGlyphsAttributes(glyphs truetype.TableGlyf, htmx truetype.TableHVmtx,
+// process the 'glyf', 'hmtx' and 'glat' tables to extract relevant info.
+func (f *GraphiteFace) preprocessGlyphsAttributes(glyphs truetype.TableGlyf, hmtx truetype.TableHVmtx,
 	attrs tableGlat) {
 	// take into account pseudo glyphs (len(glyphs) <= len(attrs))
 	L := len(glyphs)
@@ -235,7 +235,7 @@ func (f *GraphiteFace) preprocessGlyphsAttributes(glyphs truetype.TableGlyf, htm
 	for gid, attr := range attrs {
 		dst := &f.glyphs[gid]
 		if gid < L {
-			dst.advance.x = htmx[gid].Advance
+			dst.advance.x = hmtx[gid].Advance
 			data := glyphs[gid]
 			dst.bbox = rect{
 				bl: Position{float32(data.Xmin), float32(data.Ymin)},

@@ -132,17 +132,16 @@ func (b *Buffer) append(codepoint rune, cluster int) {
 	b.Pos = append(b.Pos, GlyphPosition{})
 }
 
-// AddRunes appends characters from `text` array to `b`. `itemOffset` is the
-// position of the first character from `text` that will be appended, and
-// `itemLength` is the number of character to add (-1 means the end of the slice).
-// When shaping part of a larger text (e.g. a run of text from a paragraph),
-// instead of passing just the substring
-// corresponding to the run, it is preferable to pass the whole
-// paragraph and specify the run start and length as `itemOffset` and
-// `itemLength`, respectively, to give HarfBuzz the full context to be able,
-// for example, to do cross-run Arabic shaping or properly handle combining
-// marks at start of run.
-// The cluster value attributed to each rune is the index in the `text` slice.
+// AddRunes appends characters from text array to b. itemOffset is the
+// position of the first character from text that will be appended, and
+// itemLength is the number of character to add (-1 means the end of the
+// slice). When shaping part of a larger text (e.g. a run of text from a
+// paragraph), instead of passing just the substring corresponding to the run,
+// it is preferable to pass the whole paragraph and specify the run start and
+// length as itemOffset and itemLength, respectively, to give HarfBuzz the
+// full context to be able, for example, to do cross-run Arabic shaping or
+// properly handle combining marks at start of run. The cluster value attributed
+// to each rune is the index in the text slice.
 func (b *Buffer) AddRunes(text []rune, itemOffset, itemLength int) {
 	/* If buffer is empty and pre-context provided, install it.
 	* This check is written this way, to make sure people can

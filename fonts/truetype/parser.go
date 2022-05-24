@@ -267,6 +267,7 @@ func (pr *FontParser) appleBitmapTable() (bitmapTable, error) {
 	return parseTableBitmap(buf, rawImageData)
 }
 
+// HheaTable returns the HHea table
 func (pr *FontParser) HheaTable() (*TableHVhea, error) {
 	buf, err := pr.GetRawTable(tagHhea)
 	if err != nil {
@@ -276,6 +277,7 @@ func (pr *FontParser) HheaTable() (*TableHVhea, error) {
 	return parseTableHVhea(buf)
 }
 
+// VheaTable returns the VHea table
 func (pr *FontParser) VheaTable() (*TableHVhea, error) {
 	buf, err := pr.GetRawTable(tagVhea)
 	if err != nil {
@@ -324,6 +326,100 @@ func (pr *FontParser) GDEFTable(nbAxis int) (TableGDEF, error) {
 	return parseTableGdef(buf, nbAxis)
 }
 
+// TableMaxp table maxp
+type TableMaxp struct {
+	Version               uint32
+	NumGlyphs             uint16
+	MaxPoints             uint16
+	MaxContours           uint16
+	MaxCompositePoints    uint16
+	MaxCompositeContours  uint16
+	MaxZones              uint16
+	MaxTwilightPoints     uint16
+	MaxStorage            uint16
+	MaxFunctionDefs       uint16
+	MaxInstructionDefs    uint16
+	MaxStackElements      uint16
+	MaxSizeOfInstructions uint16
+	MaxComponentElements  uint16
+	MaxComponentDepth     uint16
+}
+
+// parseTableMaxp parses the maxp table and returns the filled in table.
+func parseTableMaxp(input []byte) (TableMaxp, error) {
+	if len(input) < 6 {
+		return TableMaxp{}, errInvalidMaxpTable
+	}
+
+	br := bytes.NewReader(input)
+	maxp := TableMaxp{}
+
+	binaryread(br, &maxp.Version)
+	binaryread(br, &maxp.NumGlyphs)
+	switch maxp.Version {
+	case 0x10000:
+		binaryread(br, &maxp.MaxPoints)
+		binaryread(br, &maxp.MaxContours)
+		binaryread(br, &maxp.MaxCompositePoints)
+		binaryread(br, &maxp.MaxCompositeContours)
+		binaryread(br, &maxp.MaxZones)
+		binaryread(br, &maxp.MaxTwilightPoints)
+		binaryread(br, &maxp.MaxStorage)
+		binaryread(br, &maxp.MaxFunctionDefs)
+		binaryread(br, &maxp.MaxInstructionDefs)
+		binaryread(br, &maxp.MaxStackElements)
+		binaryread(br, &maxp.MaxSizeOfInstructions)
+		binaryread(br, &maxp.MaxComponentElements)
+		binaryread(br, &maxp.MaxComponentDepth)
+	default:
+		// version 0.5 only has NumGlyphs
+	}
+	return maxp, nil
+}
+
+// NumGlyphs parses the 'maxp' table to find the number of glyphs in the font.
+func (pr *FontParser) NumGlyphs() (int, error) {
+	buf, err := pr.GetRawTable(tagMaxp)
+	if err != nil {
+		return -1, err
+	}
+	maxp, err := parseTableMaxp(buf)
+	if err != nil {
+		return 0, err
+	}
+	return int(maxp.NumGlyphs), nil
+}
+
+func (pr *FontParser) prepTable() ([]byte, error) {
+	s, found := pr.tables[tagPrep]
+	if found {
+		return pr.findTableBuffer(s)
+	}
+	return nil, nil
+}
+
+func (pr *FontParser) cvtTable() ([]byte, error) {
+	s, found := pr.tables[tagCvt]
+	if found {
+		return pr.findTableBuffer(s)
+	}
+	return nil, nil
+}
+
+func (pr *FontParser) maxpTable() (TableMaxp, error) {
+	s, found := pr.tables[tagMaxp]
+	if !found {
+		return TableMaxp{}, errors.New("missing required 'maxp' table")
+	}
+
+	buf, err := pr.findTableBuffer(s)
+	if err != nil {
+		return TableMaxp{}, fmt.Errorf("invalid required cmap table: %s", err)
+	}
+
+	return parseTableMaxp(buf)
+}
+
 func (pr *FontParser) CmapTable() (TableCmap, error) {
 	s, found := pr.tables[tagCmap]
 	if !found {
@@ -356,16 +452,6 @@ func (pr *FontParser) svgTable() (tableSVG, error) {
 	}
 
 	return parseTableSVG(buf)
-}
-
-// NumGlyphs parses the 'maxp' table to find the number of glyphs in the font.
-func (pr *FontParser) NumGlyphs() (int, error) {
-	buf, err := pr.GetRawTable(tagMaxp)
-	if err != nil {
-		return -1, err
-	}
-
-	return parseTableMaxp(buf)
 }
 
 // HmtxTable returns the glyphs horizontal metrics (array of size numGlyphs),
@@ -579,6 +665,7 @@ var (
 	tagGlat         = MustNewTag("Glat")
 )
 
+// GraphiteTables contains the data for the graphite tables
 type GraphiteTables struct {
 	Sill, Feat, Gloc, Glat, Silf []byte
 }
@@ -653,12 +740,31 @@ func (pr *FontParser) loadTables() (*Font, error) {
 		out Font
 		err error
 	)
+
+	out.knowTables = make(map[Tag]bool)
+	for tbl := range pr.tables {
+		out.knowTables[tbl] = true
+	}
+
 	out.Type = pr.Type
 
-	out.NumGlyphs, err = pr.NumGlyphs()
+	out.Maxp, err = pr.maxpTable()
 	if err != nil {
 		return nil, err
 	}
+
+	out.prep, err = pr.prepTable()
+	if err != nil {
+		return nil, err
+	}
+
+	out.cvt, err = pr.cvtTable()
+	if err != nil {
+		return nil, err
+	}
+
+	out.NumGlyphs = int(out.Maxp.NumGlyphs)
+
 	cmaps, err := pr.CmapTable()
 	if err != nil {
 		return nil, err
@@ -727,7 +833,7 @@ func (pr *FontParser) loadTables() (*Font, error) {
 		out.Graphite = &gr
 	}
 
-	if pr.HasTable(TagPrep) {
+	if pr.HasTable(tagPrep) {
 		out.HasHint = true
 	}
 

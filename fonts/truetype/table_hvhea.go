@@ -5,7 +5,7 @@ import (
 	"encoding/binary"
 )
 
-// TableHVhea exposes global metrics for horizontal or vertical writting.
+// TableHVhea exposes global metrics for horizontal or vertical writing.
 type TableHVhea struct {
 	Ascent               int16 // typoAscent in version 1.1
 	Descent              int16 // typoDescent in version 1.1
@@ -18,6 +18,8 @@ type TableHVhea struct {
 	CaretSlopeRun        int16
 	CaretOffset          int16
 	numOfLongMetrics     uint16
+	MetricDataFormat     int16
+	NumberOfHMetrics     uint16
 }
 
 func parseTableHVhea(buf []byte) (*TableHVhea, error) {
@@ -37,7 +39,7 @@ func parseTableHVhea(buf []byte) (*TableHVhea, error) {
 		Reserved2            int16
 		Reserved3            int16
 		Reserved4            int16
-		MetricDataformat     int16
+		MetricDataFormat     int16
 		NumOfLongMetrics     uint16
 	}
 	err := binary.Read(bytes.NewReader(buf), binary.BigEndian, &fields)
@@ -56,6 +58,8 @@ func parseTableHVhea(buf []byte) (*TableHVhea, error) {
 		CaretSlopeRun:        fields.CaretSlopeRun,
 		CaretOffset:          fields.CaretOffset,
 		numOfLongMetrics:     fields.NumOfLongMetrics,
+		MetricDataFormat:     fields.MetricDataFormat,
+		NumberOfHMetrics:     fields.NumOfLongMetrics,
 	}
 	return &out, nil
 }

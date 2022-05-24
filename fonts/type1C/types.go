@@ -1,179 +1,118 @@
 package type1c
 
-import "github.com/speedata/textlayout/fonts/simpleencodings"
+import (
+	"github.com/speedata/textlayout/fonts"
+)
 
-// the Standard encoding the same as in PDF
-// but expertEncoding is not the same as MacExpert
-var expertEncoding = simpleencodings.Encoding{
-	32:  "space",
-	33:  "exclamsmall",
-	34:  "Hungarumlautsmall",
-	36:  "dollaroldstyle",
-	37:  "dollarsuperior",
-	38:  "ampersandsmall",
-	39:  "Acutesmall",
-	40:  "parenleftsuperior",
-	41:  "parenrightsuperior",
-	42:  "twodotenleader",
-	43:  "onedotenleader",
-	44:  "comma",
-	45:  "hyphen",
-	46:  "period",
-	47:  "fraction",
-	48:  "zerooldstyle",
-	49:  "oneoldstyle",
-	50:  "twooldstyle",
-	51:  "threeoldstyle",
-	52:  "fouroldstyle",
-	53:  "fiveoldstyle",
-	54:  "sixoldstyle",
-	55:  "sevenoldstyle",
-	56:  "eightoldstyle",
-	57:  "nineoldstyle",
-	58:  "colon",
-	59:  "semicolon",
-	60:  "commasuperior",
-	61:  "threequartersemdash",
-	62:  "periodsuperior",
-	63:  "questionsmall",
-	65:  "asuperior",
-	66:  "bsuperior",
-	67:  "centsuperior",
-	68:  "dsuperior",
-	69:  "esuperior",
-	73:  "isuperior",
-	76:  "lsuperior",
-	77:  "msuperior",
-	78:  "nsuperior",
-	79:  "osuperior",
-	82:  "rsuperior",
-	83:  "ssuperior",
-	84:  "tsuperior",
-	86:  "ff",
-	87:  "fi",
-	88:  "fl",
-	89:  "ffi",
-	90:  "ffl",
-	91:  "parenleftinferior",
-	93:  "parenrightinferior",
-	94:  "Circumflexsmall",
-	95:  "hyphensuperior",
-	96:  "Gravesmall",
-	97:  "Asmall",
-	98:  "Bsmall",
-	99:  "Csmall",
-	100: "Dsmall",
-	101: "Esmall",
-	102: "Fsmall",
-	103: "Gsmall",
-	104: "Hsmall",
-	105: "Ismall",
-	106: "Jsmall",
-	107: "Ksmall",
-	108: "Lsmall",
-	109: "Msmall",
-	110: "Nsmall",
-	111: "Osmall",
-	112: "Psmall",
-	113: "Qsmall",
-	114: "Rsmall",
-	115: "Ssmall",
-	116: "Tsmall",
-	117: "Usmall",
-	118: "Vsmall",
-	119: "Wsmall",
-	120: "Xsmall",
-	121: "Ysmall",
-	122: "Zsmall",
-	123: "colonmonetary",
-	124: "onefitted",
-	125: "rupiah",
-	126: "Tildesmall",
-	161: "exclamdownsmall",
-	162: "centoldstyle",
-	163: "Lslashsmall",
-	166: "Scaronsmall",
-	167: "Zcaronsmall",
-	168: "Dieresissmall",
-	169: "Brevesmall",
-	170: "Caronsmall",
-	172: "Dotaccentsmall",
-	175: "Macronsmall",
-	178: "figuredash",
-	179: "hypheninferior",
-	182: "Ogoneksmall",
-	183: "Ringsmall",
-	184: "Cedillasmall",
-	188: "onequarter",
-	189: "onehalf",
-	190: "threequarters",
-	191: "questiondownsmall",
-	192: "oneeighth",
-	193: "threeeighths",
-	194: "fiveeighths",
-	195: "seveneighths",
-	196: "onethird",
-	197: "twothirds",
-	200: "zerosuperior",
-	201: "onesuperior",
-	202: "twosuperior",
-	203: "threesuperior",
-	204: "foursuperior",
-	205: "fivesuperior",
-	206: "sixsuperior",
-	207: "sevensuperior",
-	208: "eightsuperior",
-	209: "ninesuperior",
-	210: "zeroinferior",
-	211: "oneinferior",
-	212: "twoinferior",
-	213: "threeinferior",
-	214: "fourinferior",
-	215: "fiveinferior",
-	216: "sixinferior",
-	217: "seveninferior",
-	218: "eightinferior",
-	219: "nineinferior",
-	220: "centinferior",
-	221: "dollarinferior",
-	222: "periodinferior",
-	223: "commainferior",
-	224: "Agravesmall",
-	225: "Aacutesmall",
-	226: "Acircumflexsmall",
-	227: "Atildesmall",
-	228: "Adieresissmall",
-	229: "Aringsmall",
-	230: "AEsmall",
-	231: "Ccedillasmall",
-	232: "Egravesmall",
-	233: "Eacutesmall",
-	234: "Ecircumflexsmall",
-	235: "Edieresissmall",
-	236: "Igravesmall",
-	237: "Iacutesmall",
-	238: "Icircumflexsmall",
-	239: "Idieresissmall",
-	240: "Ethsmall",
-	241: "Ntildesmall",
-	242: "Ogravesmall",
-	243: "Oacutesmall",
-	244: "Ocircumflexsmall",
-	245: "Otildesmall",
-	246: "Odieresissmall",
-	247: "OEsmall",
-	248: "Oslashsmall",
-	249: "Ugravesmall",
-	250: "Uacutesmall",
-	251: "Ucircumflexsmall",
-	252: "Udieresissmall",
-	253: "Yacutesmall",
-	254: "Thornsmall",
-	255: "Ydieresissmall",
+type mainIndex int
+
+// Index tables
+const (
+	NameIndex mainIndex = iota
+	DictIndex
+	StringIndex
+	GlobalSubrIndex
+	CharSet
+	Encoding
+	CharStringsIndex
+	PrivateDict
+	LocalSubrsIndex
+)
+
+func (mi mainIndex) String() string {
+	switch mi {
+	case NameIndex:
+		return "NameIndex"
+	case DictIndex:
+		return "DictIndex"
+	case StringIndex:
+		return "StringIndex"
+	case GlobalSubrIndex:
+		return "GlobalSubrIndex"
+	case CharSet:
+		return "CharSet"
+	case Encoding:
+		return "Encoding"
+	case CharStringsIndex:
+		return "CharStringsIndex"
+	case PrivateDict:
+		return "PrivateDict"
+	case LocalSubrsIndex:
+		return "LocalSubrsIndex"
+	}
+	return ""
 }
 
-var stdStrings = [391]string{
-	".notdef",
+// CFF represents a CFF font file
+type CFF struct {
+	Major           uint8
+	Minor           uint8
+	HdrSize         uint8
+	Fontindex       int
+	offsetSize      uint8
+	fontnames       []string
+	globalSubrIndex [][]byte
+	Font            []*Font
+	strings         []string
+	stringToInt     map[string]int
+}
+
+// SID represents a CFF string
+type SID int
+
+// Font is a CFF font instance. There can be more than one CFF font in a font file.
+type Font struct {
+	global             *CFF
+	name               SID
+	bbox               []int
+	bluefuzz           int
+	bluescale          float64
+	blueshift          int
+	bluevalues         []int
+	charset            []SID
+	charsetOffset      int64
+	charsetFormat      uint8
+	charstringsOffset  int64
+	CharStrings        [][]byte
+	cidcount           int
+	copyright          SID
+	data               []byte // for font writing
+	defaultWidthX      int
+	dict               []byte
+	encodingOffset     int
+	encoding           map[int]int
+	encodingFormat     uint8
+	familyblues        []int
+	familyotherblues   []int
+	fdarray            int64
+	fdselect           int64
+	fullname           SID
+	familyname         SID
+	initialRandomSeed  int
+	nominalWidthX      int
+	notice             SID
+	ordering           SID
+	otherblues         []int
+	privatedictoffset  int64
+	privatedictsize    int
+	privatedict        []byte
+	registry           SID
+	stdhw              int
+	stdvw              int
+	stemsnaph          []int
+	stemsnapv          []int
+	subrsOffset        int
+	subrsIndex         [][]byte
+	supplement         int
+	uniqueid           int
+	underlinePosition  float64
+	underlineThickness float64
+	version            SID
+	weight             SID
+	cmap               fonts.CmapSimple // see synthesizeCmap
+}
+
+var predefinedStrings = []string{".notdef",
 	"space",
 	"exclam",
 	"quotedbl",
@@ -563,5 +502,4 @@ var stdStrings = [391]string{
 	"Medium",
 	"Regular",
 	"Roman",
-	"Semibold",
-}
+	"Semibold"}
