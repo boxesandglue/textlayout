@@ -91,7 +91,7 @@ func (fvar *TableFvar) checkDefaultInstance(names TableName) {
 	// add the default instance
 	// choose the subfamily entry
 	subFamily := NamePreferredSubfamily
-	if v1, v2 := names.getEntry(subFamily); v1 == nil && v2 == nil {
+	if v1, v2 := names.getEntry(subFamily); v1 == "" && v2 == "" {
 		subFamily = NameFontSubfamily
 	}
 	defaultInstance := VarInstance{

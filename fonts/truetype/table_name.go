@@ -17,16 +17,16 @@ import (
 // https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6name.html
 type TableName []NameEntry
 
-// returns the name entry with `name`, for both plaftorm,
-// or nil if not found
-func (names TableName) getEntry(name NameID) (windows, mac *NameEntry) {
+// getEntry returns the name entry for name, for both platforms, or empty string
+// if not found
+func (names TableName) getEntry(name NameID) (windows, mac string) {
 	for _, e := range names {
 		if e.NameID == name {
-			if e.isWindows() && (e.LanguageID == PLMicrosoftEnglish || windows == nil) {
-				windows = &e
+			if e.isWindows() && (e.LanguageID == PLMicrosoftEnglish || windows == "") {
+				windows = e.String()
 			}
-			if e.isMac() && (e.LanguageID == PLMacEnglish || mac == nil) {
-				mac = &e
+			if e.isMac() && (e.LanguageID == PLMacEnglish || mac == "") {
+				mac = e.String()
 			}
 		}
 	}
@@ -41,7 +41,7 @@ func (names TableName) getName(name NameID) string {
 	return ""
 }
 
-// SelectEntry return the entry for `name` or nil if not found.
+// SelectEntry return the entry for name or nil if not found.
 func (names TableName) SelectEntry(name NameID) *NameEntry {
 	var (
 		foundAppleRoman   = -1

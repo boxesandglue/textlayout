@@ -24,13 +24,12 @@ func (font *Font) PostscriptName() string {
 	// scan the name table to see whether we have a Postscript name here,
 	// either in Macintosh or Windows platform encodings
 	windows, mac := font.Names.getEntry(NamePostscript)
-
 	// prefer Windows entries over Apple
-	if windows != nil {
-		return windows.String()
+	if windows != "" {
+		return windows
 	}
-	if mac != nil {
-		return mac.String()
+	if mac != "" {
+		return mac
 	}
 	return ""
 }
