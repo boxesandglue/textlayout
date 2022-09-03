@@ -71,7 +71,7 @@ func writeIndexData(w io.Writer, data [][]byte, name string) (int, error) {
 		lendata += len(b)
 	}
 	var offsetSize uint8
-	if lendata <= 1<<8 {
+	if lendata < 1<<8 {
 		offsetSize = 1
 	} else if lendata < 1<<16 {
 		offsetSize = 2
@@ -251,6 +251,7 @@ type fontinfo struct {
 	PrivateDictOffset int
 }
 
+// fontInfo writes the charstrings, charset and private dict index
 func (f *Font) fontInfo() (*fontinfo, error) {
 	fi := &fontinfo{}
 	fi.CharSetOffset = 0
