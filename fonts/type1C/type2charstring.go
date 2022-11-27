@@ -2,7 +2,6 @@ package type1c
 
 import (
 	"fmt"
-	"log"
 )
 
 func calculateBias(subrs [][]byte) int {
@@ -181,7 +180,12 @@ func getSubrsIndex(nominalWidthX int, defaultWidthX int, globalSubrs [][]byte, l
 			state.clearStack()
 		} else if b0 == 28 {
 			// shortint
-			log.Fatal("nyi: shortint")
+			a1 := int(cs[pos+1])
+			a2 := int(cs[pos+2])
+			var i int16
+			i = (int16(a1) << 8) | (int16(a2))
+			state.push(int(i))
+			pos += 2
 		} else if b0 == 29 {
 			subrIdx := state.pop() + globalBias
 
@@ -214,9 +218,13 @@ func getSubrsIndex(nominalWidthX int, defaultWidthX int, globalSubrs [][]byte, l
 			val := -(int(b0)-251)*256 - int(b1) - 108
 			state.push(val)
 		} else if b0 == 255 {
+			a1 := int(cs[pos+1])
+			a2 := int(cs[pos+2])
+			a3 := int(cs[pos+3])
+			a4 := int(cs[pos+4])
+			tmp := ((a1 << 24) | (a2 << 16) | (a3 << 8) | a4) / 65536
+			state.push(tmp)
 			pos += 4
-			// ignore for now
-			// state.clearStack()
 		} else {
 			fmt.Println("b", b0)
 			// state.clearStack()
