@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"math"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -519,6 +520,8 @@ func (fnt *Font) WriteSubset(w io.Writer) error {
 // getCharTag returns a string of length 6 based on the characters in code point
 // list. All returned characters are in the range A-Z.
 func getCharTag(codepoints []GID) string {
+	// sort the code points so we can create reproducible PDFs
+	sort.Sort(fonts.SortByGID(codepoints))
 	data := make([]byte, len(codepoints)*2)
 	for i, r := range codepoints {
 		data[i*2] = byte((r >> 8) & 0xff)
