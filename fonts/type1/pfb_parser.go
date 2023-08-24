@@ -7,7 +7,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"strings"
 
 	tk "github.com/benoitkugler/pstokenizer"
@@ -113,7 +112,7 @@ func seekMarkers(pfb fonts.Resource) (segment1, segment2 []byte, err error) {
 	if err != nil {
 		return nil, nil, err
 	}
-	data, err := ioutil.ReadAll(pfb)
+	data, err := io.ReadAll(pfb)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -1060,7 +1059,7 @@ func (p *parser) readPut() error {
 	return fmt.Errorf("found %s but expected NP", token.Value)
 }
 
-/// Reads the next token and throws an error if it is not of the given kind.
+// / Reads the next token and throws an error if it is not of the given kind.
 func (p *parser) read(kind tk.Kind) (tk.Token, error) {
 	token, err := p.lexer.nextToken()
 	if err != nil {
