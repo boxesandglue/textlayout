@@ -4,9 +4,9 @@ import (
 	"math"
 	"sort"
 
-	"github.com/speedata/textlayout/fonts"
-	"github.com/speedata/textlayout/fonts/truetype"
-	"github.com/speedata/textlayout/language"
+	"github.com/boxesandglue/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts/truetype"
+	"github.com/boxesandglue/textlayout/language"
 )
 
 /* ported from harfbuzz/src/hb-buffer.hh and hb-buffer.h
@@ -554,7 +554,7 @@ func (b *Buffer) reverseClusters() {
 	}, false)
 }
 
-//  mergeClusters = false
+// mergeClusters = false
 func (b *Buffer) reverseGroups(groupFunc func(*GlyphInfo, *GlyphInfo) bool, mergeClusters bool) {
 	if len(b.Info) == 0 {
 		return

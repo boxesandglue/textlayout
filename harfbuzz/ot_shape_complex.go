@@ -1,8 +1,8 @@
 package harfbuzz
 
 import (
-	tt "github.com/speedata/textlayout/fonts/truetype"
-	"github.com/speedata/textlayout/language"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
+	"github.com/boxesandglue/textlayout/language"
 )
 
 type zeroWidthMarks uint8

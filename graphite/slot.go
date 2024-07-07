@@ -1,7 +1,7 @@
 package graphite
 
 import (
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 )
 
 const (

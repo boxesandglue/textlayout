@@ -7,8 +7,8 @@ import (
 
 	testdata "github.com/benoitkugler/textlayout-testdata/harfbuzz"
 	tttestdata "github.com/benoitkugler/textlayout-testdata/truetype"
-	tt "github.com/speedata/textlayout/fonts/truetype"
-	"github.com/speedata/textlayout/language"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
+	"github.com/boxesandglue/textlayout/language"
 )
 
 func check(err error) {

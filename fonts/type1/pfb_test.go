@@ -7,7 +7,7 @@ import (
 
 	tokenizer "github.com/benoitkugler/pstokenizer"
 	testdata "github.com/benoitkugler/textlayout-testdata/type1"
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 )
 
 func TestOpen(t *testing.T) {

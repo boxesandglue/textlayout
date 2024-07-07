@@ -6,7 +6,7 @@ package type1
 import (
 	"strings"
 
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 )
 
 type Fl = float32

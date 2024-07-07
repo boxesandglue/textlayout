@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	testdata "github.com/benoitkugler/textlayout-testdata/bitmap"
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 )
 
 var files = []string{

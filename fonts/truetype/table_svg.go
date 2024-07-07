@@ -8,8 +8,8 @@ import (
 	"io"
 	"sort"
 
-	"github.com/speedata/textlayout/fonts"
-	"github.com/speedata/textlayout/fonts/binaryreader"
+	"github.com/boxesandglue/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts/binaryreader"
 )
 
 var tagSVG = NewTag('S', 'V', 'G', ' ')

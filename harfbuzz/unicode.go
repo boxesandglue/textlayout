@@ -3,7 +3,7 @@ package harfbuzz
 import (
 	"unicode"
 
-	"github.com/speedata/textlayout/unicodedata"
+	"github.com/boxesandglue/textlayout/unicodedata"
 )
 
 // uni exposes some lookup functions for Unicode properties.

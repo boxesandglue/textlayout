@@ -10,7 +10,7 @@ import (
 	"image/png"
 	"math"
 
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 	"golang.org/x/image/tiff"
 )
 

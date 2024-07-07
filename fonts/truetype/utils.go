@@ -5,7 +5,7 @@ import (
 	"errors"
 	"io"
 
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 )
 
 func binaryread(r io.Reader, data interface{}) {

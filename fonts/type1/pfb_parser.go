@@ -10,8 +10,8 @@ import (
 	"strings"
 
 	tk "github.com/benoitkugler/pstokenizer"
-	"github.com/speedata/textlayout/fonts"
-	"github.com/speedata/textlayout/fonts/simpleencodings"
+	"github.com/boxesandglue/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts/simpleencodings"
 )
 
 const (

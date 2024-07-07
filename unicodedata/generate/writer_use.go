@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strings"
 
-	ucd "github.com/speedata/textlayout/unicodedata"
+	ucd "github.com/boxesandglue/textlayout/unicodedata"
 )
 
 func generateUSETable(indicS, indicP, blocks, indicSAdd, indicPAdd, derivedCoreProperties, scripts map[string][]rune,

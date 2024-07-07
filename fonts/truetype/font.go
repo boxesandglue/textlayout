@@ -7,8 +7,8 @@ package truetype
 import (
 	"errors"
 
-	"github.com/speedata/textlayout/fonts"
-	type1c "github.com/speedata/textlayout/fonts/type1C"
+	"github.com/boxesandglue/textlayout/fonts"
+	type1c "github.com/boxesandglue/textlayout/fonts/type1C"
 )
 
 var _ fonts.Face = (*Font)(nil)

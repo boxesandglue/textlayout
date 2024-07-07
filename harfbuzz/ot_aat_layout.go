@@ -3,8 +3,8 @@ package harfbuzz
 import (
 	"fmt"
 
-	"github.com/speedata/textlayout/fonts"
-	tt "github.com/speedata/textlayout/fonts/truetype"
+	"github.com/boxesandglue/textlayout/fonts"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
 )
 
 // ported from harfbuzz/src/hb-aat-layout.h  Copyright © 2018 Ebrahim Byagowi, Behdad Esfahbod

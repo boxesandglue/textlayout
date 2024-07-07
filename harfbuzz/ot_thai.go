@@ -1,7 +1,7 @@
 package harfbuzz
 
 import (
-	"github.com/speedata/textlayout/language"
+	"github.com/boxesandglue/textlayout/language"
 )
 
 // ported from harfbuzz/src/hb-ot-shape-complex-thai.cc Copyright © 2010,2012  Google, Inc.  Behdad Esfahbod

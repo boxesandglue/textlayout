@@ -3,7 +3,7 @@ package harfbuzz
 import (
 	"sort"
 
-	tt "github.com/speedata/textlayout/fonts/truetype"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
 )
 
 // ported from harfbuzz/src/hb-aat-map.cc, hb-att-map.hh Copyright © 2018  Google, Inc. Behdad Esfahbod

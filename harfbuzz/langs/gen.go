@@ -35,7 +35,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/speedata/textlayout/language"
+	"github.com/boxesandglue/textlayout/language"
 	"golang.org/x/net/html"
 	"golang.org/x/net/html/atom"
 	"golang.org/x/text/unicode/norm"

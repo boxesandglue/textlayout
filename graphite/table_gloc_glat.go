@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"math/bits"
 
-	"github.com/speedata/textlayout/fonts/binaryreader"
+	"github.com/boxesandglue/textlayout/fonts/binaryreader"
 )
 
 type subboxMetrics struct {

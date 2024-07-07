@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/speedata/textlayout/fonts"
-	type1c "github.com/speedata/textlayout/fonts/type1C"
+	"github.com/boxesandglue/textlayout/fonts"
+	type1c "github.com/boxesandglue/textlayout/fonts/type1C"
 )
 
 // FontParser serves as an intermediate when reading font files.

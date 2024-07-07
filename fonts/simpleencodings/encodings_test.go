@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/speedata/textlayout/fonts/glyphsnames"
+	"github.com/boxesandglue/textlayout/fonts/glyphsnames"
 )
 
 var encs = [...]*Encoding{

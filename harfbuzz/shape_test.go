@@ -15,9 +15,9 @@ import (
 	"testing"
 
 	testdata "github.com/benoitkugler/textlayout-testdata/harfbuzz"
-	"github.com/speedata/textlayout/fonts"
-	tt "github.com/speedata/textlayout/fonts/truetype"
-	"github.com/speedata/textlayout/language"
+	"github.com/boxesandglue/textlayout/fonts"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
+	"github.com/boxesandglue/textlayout/language"
 )
 
 // ported from harfbuzz/util/hb-shape.cc, main-font-text.hh Copyright © 2010, 2011,2012  Google, Inc. Behdad Esfahbod

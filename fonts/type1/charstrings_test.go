@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	testdata "github.com/benoitkugler/textlayout-testdata/type1"
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 )
 
 func TestParseMetrics(t *testing.T) {

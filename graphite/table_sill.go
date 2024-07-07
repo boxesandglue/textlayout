@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/speedata/textlayout/fonts/binaryreader"
+	"github.com/boxesandglue/textlayout/fonts/binaryreader"
 )
 
 type tableSill []languageRecord

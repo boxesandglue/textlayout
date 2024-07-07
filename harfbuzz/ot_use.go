@@ -3,8 +3,8 @@ package harfbuzz
 import (
 	"fmt"
 
-	tt "github.com/speedata/textlayout/fonts/truetype"
-	ucd "github.com/speedata/textlayout/unicodedata"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
+	ucd "github.com/boxesandglue/textlayout/unicodedata"
 )
 
 // ported from harfbuzz/src/hb-ot-shape-complex-use.cc Copyright © 2015  Mozilla Foundation. Google, Inc. Jonathan Kew, Behdad Esfahbod

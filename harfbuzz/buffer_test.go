@@ -3,8 +3,8 @@ package harfbuzz
 import (
 	"testing"
 
-	"github.com/speedata/textlayout/fonts"
-	"github.com/speedata/textlayout/language"
+	"github.com/boxesandglue/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/language"
 )
 
 // ported from harfbuzz/test/api/test-buffer.c Copyright © 2011  Google, Inc. Behdad Esfahbod

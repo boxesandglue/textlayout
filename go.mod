@@ -1,4 +1,4 @@
-module github.com/speedata/textlayout
+module github.com/boxesandglue/textlayout
 
 go 1.18
 

@@ -10,7 +10,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/speedata/textlayout/unicodedata"
+	"github.com/boxesandglue/textlayout/unicodedata"
 	"golang.org/x/text/unicode/rangetable"
 )
 

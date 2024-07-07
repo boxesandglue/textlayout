@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	testdata "github.com/benoitkugler/textlayout-testdata/truetype"
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 )
 
 func TestMort(t *testing.T) {

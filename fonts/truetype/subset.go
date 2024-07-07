@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 )
 
 func binarywrite(w io.Writer, data interface{}) error {

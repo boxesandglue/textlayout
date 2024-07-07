@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	testdata "github.com/benoitkugler/textlayout-testdata/truetype"
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 	"golang.org/x/image/font/sfnt"
 	fx "golang.org/x/image/math/fixed"
 )

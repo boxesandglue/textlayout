@@ -1,7 +1,7 @@
 package harfbuzz
 
 import (
-	tt "github.com/speedata/textlayout/fonts/truetype"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
 )
 
 // ported from harfbuzz/src/hb-ot-shape-complex-arabic-win1256.hh Copyright © 2014  Google, Inc. Behdad Esfahbod

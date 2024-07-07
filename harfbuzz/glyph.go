@@ -3,8 +3,8 @@ package harfbuzz
 import (
 	"fmt"
 
-	"github.com/speedata/textlayout/fonts"
-	"github.com/speedata/textlayout/fonts/truetype"
+	"github.com/boxesandglue/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts/truetype"
 )
 
 // Position stores a position, scaled according to the `Font`
@@ -36,19 +36,19 @@ type GlyphPosition struct {
 }
 
 // unicodeProp is a two-byte number. The low byte includes:
-// - General_Category: 5 bits
-// - A bit each for:
-//   -> Is it Default_Ignorable(); we have a modified Default_Ignorable().
-//   -> Whether it's one of the four Mongolian Free Variation Selectors,
+//   - General_Category: 5 bits
+//   - A bit each for:
+//     -> Is it Default_Ignorable(); we have a modified Default_Ignorable().
+//     -> Whether it's one of the four Mongolian Free Variation Selectors,
 //     CGJ, or other characters that are hidden but should not be ignored
 //     like most other Default_Ignorable()s do during matching.
-//   -> Whether it's a grapheme continuation.
+//     -> Whether it's a grapheme continuation.
 //
 // The high-byte has different meanings, switched by the General_Category:
-// - For Mn,Mc,Me: the modified Combining_Class.
-// - For Cf: whether it's ZWJ, ZWNJ, or something else.
-// - For Ws: index of which space character this is, if space fallback
-//   is needed, ie. we don't set this by default, only if asked to.
+//   - For Mn,Mc,Me: the modified Combining_Class.
+//   - For Cf: whether it's ZWJ, ZWNJ, or something else.
+//   - For Ws: index of which space character this is, if space fallback
+//     is needed, ie. we don't set this by default, only if asked to.
 type unicodeProp uint16
 
 const (

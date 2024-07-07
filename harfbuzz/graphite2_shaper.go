@@ -3,10 +3,10 @@ package harfbuzz
 import (
 	"strings"
 
-	"github.com/speedata/textlayout/fonts"
-	"github.com/speedata/textlayout/fonts/truetype"
-	tt "github.com/speedata/textlayout/fonts/truetype"
-	"github.com/speedata/textlayout/graphite"
+	"github.com/boxesandglue/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts/truetype"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
+	"github.com/boxesandglue/textlayout/graphite"
 )
 
 // ported from harfbuzz/src/hb-graphite2.cc

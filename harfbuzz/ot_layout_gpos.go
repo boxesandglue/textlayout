@@ -3,8 +3,8 @@ package harfbuzz
 import (
 	"fmt"
 
-	"github.com/speedata/textlayout/fonts"
-	tt "github.com/speedata/textlayout/fonts/truetype"
+	"github.com/boxesandglue/textlayout/fonts"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
 )
 
 // ported from harfbuzz/src/hb-ot-layout-gpos-table.hh Copyright © 2007,2008,2009,2010  Red Hat, Inc.; 2010,2012,2013  Google, Inc.  Behdad Esfahbod
@@ -121,7 +121,7 @@ func applyRecurseGPOS(c *otApplyContext, lookupIndex uint16) bool {
 	return c.applyRecurseLookup(lookupIndex, l)
 }
 
-//  implements `hb_apply_func_t`
+// implements `hb_apply_func_t`
 type gposSubtable tt.GPOSSubtable
 
 // return `true` is the positionning found a match and was applied

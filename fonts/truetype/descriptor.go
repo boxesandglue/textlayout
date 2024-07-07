@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 )
 
 func (font *Font) PostscriptInfo() (fonts.PSInfo, bool) {

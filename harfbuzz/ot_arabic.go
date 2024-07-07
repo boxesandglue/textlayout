@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/speedata/textlayout/fonts"
-	tt "github.com/speedata/textlayout/fonts/truetype"
-	"github.com/speedata/textlayout/language"
-	ucd "github.com/speedata/textlayout/unicodedata"
+	"github.com/boxesandglue/textlayout/fonts"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
+	"github.com/boxesandglue/textlayout/language"
+	ucd "github.com/boxesandglue/textlayout/unicodedata"
 )
 
 // ported from harfbuzz/src/hb-ot-shape-complex-arabic.cc, hb-ot-shape-complex-arabic-fallback.hh Copyright © 2010,2012  Google, Inc. Behdad Esfahbod

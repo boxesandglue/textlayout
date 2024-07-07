@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/speedata/textlayout/fonts"
-	tt "github.com/speedata/textlayout/fonts/truetype"
+	"github.com/boxesandglue/textlayout/fonts"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
 )
 
 // ported from harfbuzz/src/hb-ot-layout-gsubgpos.hh Copyright © 2007,2008,2009,2010  Red Hat, Inc. 2010,2012  Google, Inc.  Behdad Esfahbod
@@ -480,7 +480,7 @@ func (c *otApplyContext) applyChainRuleSet(ruleSet []tt.ChainedSequenceRule, mat
 	return false
 }
 
-//  `input` starts with second glyph (`inputCount` = len(input)+1)
+// `input` starts with second glyph (`inputCount` = len(input)+1)
 func (c *otApplyContext) contextApplyLookup(input []uint16, lookupRecord []tt.SequenceLookup, lookupContext matcherFunc) bool {
 	matchLength := 0
 	var matchPositions [maxContextLength]int
@@ -493,7 +493,8 @@ func (c *otApplyContext) contextApplyLookup(input []uint16, lookupRecord []tt.Se
 	return true
 }
 
-//  `input` starts with second glyph (`inputCount` = len(input)+1)
+//	`input` starts with second glyph (`inputCount` = len(input)+1)
+//
 // lookupsContexts : backtrack, input, lookahead
 func (c *otApplyContext) chainContextApplyLookup(backtrack, input, lookahead []uint16,
 	lookupRecord []tt.SequenceLookup, lookupContexts [3]matcherFunc) bool {

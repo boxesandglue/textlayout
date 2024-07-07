@@ -4,8 +4,8 @@ import (
 	"encoding/hex"
 	"strings"
 
-	tt "github.com/speedata/textlayout/fonts/truetype"
-	"github.com/speedata/textlayout/language"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
+	"github.com/boxesandglue/textlayout/language"
 )
 
 // ported from harfbuzz/src/hb-ot-tag.cc Copyright © 2009  Red Hat, Inc. 2011  Google, Inc. Behdad Esfahbod, Roozbeh Pournader

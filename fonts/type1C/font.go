@@ -6,7 +6,7 @@ import (
 	"math"
 	"sort"
 
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 )
 
 // Top DICT Data - see CFF spec 9 p. 14

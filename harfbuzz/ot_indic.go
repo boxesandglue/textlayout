@@ -4,16 +4,16 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/speedata/textlayout/fonts"
-	tt "github.com/speedata/textlayout/fonts/truetype"
-	"github.com/speedata/textlayout/language"
+	"github.com/boxesandglue/textlayout/fonts"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
+	"github.com/boxesandglue/textlayout/language"
 )
 
 // ported from harfbuzz/src/hb-ot-shape-complex-indic.cc, .hh Copyright © 2011,2012  Google, Inc.  Behdad Esfahbod
 
 // UniscribeBugCompatible alters shaping of indic and khmer scripts:
-//	- when `false`, it applies the recommended shaping choices
-//	- when `true`, Uniscribe behavior is reproduced
+//   - when `false`, it applies the recommended shaping choices
+//   - when `true`, Uniscribe behavior is reproduced
 var UniscribeBugCompatible = false
 
 var _ otComplexShaper = (*complexShaperIndic)(nil)

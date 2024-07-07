@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"math/bits"
 
-	"github.com/speedata/textlayout/fonts"
-	tt "github.com/speedata/textlayout/fonts/truetype"
+	"github.com/boxesandglue/textlayout/fonts"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
 )
 
 const maxContextLength = 64
@@ -60,7 +60,7 @@ func applyRecurseGSUB(c *otApplyContext, lookupIndex uint16) bool {
 	return c.applyRecurseLookup(lookupIndex, l)
 }
 
-//  implements `hb_apply_func_t`
+// implements `hb_apply_func_t`
 type gsubSubtable tt.GSUBSubtable
 
 // return `true` is we should apply this lookup to the glyphs in `c`,

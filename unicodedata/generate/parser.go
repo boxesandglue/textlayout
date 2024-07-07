@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	ucd "github.com/speedata/textlayout/unicodedata"
+	ucd "github.com/boxesandglue/textlayout/unicodedata"
 )
 
 // we do not support surrogates yet

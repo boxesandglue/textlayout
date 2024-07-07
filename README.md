@@ -1,4 +1,4 @@
-# Text layout library for Golang [![Go Reference](https://pkg.go.dev/badge/github.com/speedata/textlayout.svg)](https://pkg.go.dev/github.com/speedata/textlayout)
+# Text layout library for Golang [![Go Reference](https://pkg.go.dev/badge/github.com/boxesandglue/textlayout.svg)](https://pkg.go.dev/github.com/boxesandglue/textlayout)
 
 This module provides a chain of tools to layout text. It is mainly a port of the C libraries harfbuzz and graphite.
 
@@ -6,7 +6,7 @@ This module provides a chain of tools to layout text. It is mainly a port of the
 
 This repository is a shallow copy of https://github.com/benoitkugler/textlayout. All credits go to Benoit KUGLER and others (see the detailed history).
 
-As of v0.1.0, the content of this repository has been split, with higher level, more experimental packages moved to [textprocessing](https://github.com/speedata/textlayout).
+As of v0.1.0, the content of this repository has been split, with higher level, more experimental packages moved to [textprocessing](https://github.com/boxesandglue/textlayout).
 
 The remaining packages are the more stable, low level logic used by [go-text](https://github.com/go-text/typesetting).
 

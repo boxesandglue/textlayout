@@ -3,8 +3,8 @@ package type1c
 import (
 	"fmt"
 
-	"github.com/speedata/textlayout/fonts"
-	ps "github.com/speedata/textlayout/fonts/psinterpreter"
+	"github.com/boxesandglue/textlayout/fonts"
+	ps "github.com/boxesandglue/textlayout/fonts/psinterpreter"
 )
 
 // LoadGlyph parses the glyph charstring to compute segments and path bounds.

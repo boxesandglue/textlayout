@@ -3,15 +3,15 @@ package harfbuzz
 import (
 	"fmt"
 
-	"github.com/speedata/textlayout/fonts"
-	tt "github.com/speedata/textlayout/fonts/truetype"
+	"github.com/boxesandglue/textlayout/fonts"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
 )
 
 // ported from harfbuzz/src/hb-ot-shape-complex-khmer.cc Copyright © 2011,2012  Google, Inc. Behdad Esfahbod
 
 var _ otComplexShaper = (*complexShaperKhmer)(nil)
 
-//  Khmer shaper
+// Khmer shaper
 type complexShaperKhmer struct {
 	plan khmerShapePlan
 }

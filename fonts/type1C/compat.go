@@ -1,8 +1,8 @@
 package type1c
 
 import (
-	"github.com/speedata/textlayout/fonts"
-	"github.com/speedata/textlayout/fonts/glyphsnames"
+	"github.com/boxesandglue/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts/glyphsnames"
 )
 
 func (fnt *Font) GlyphName(g fonts.GID) string {

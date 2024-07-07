@@ -1,7 +1,7 @@
 package truetype
 
 import (
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 )
 
 func (t bitmapTable) availableSizes(avgWidth, upem uint16) []fonts.BitmapSize {

@@ -3,7 +3,7 @@ package harfbuzz
 import (
 	"testing"
 
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 )
 
 // ported from harfbuzz/test/api/test-shape.c  Copyright © 2011  Google, Inc. Behdad Esfahbod

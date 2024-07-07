@@ -1,7 +1,7 @@
 package type1c
 
 import (
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 )
 
 type mainIndex int

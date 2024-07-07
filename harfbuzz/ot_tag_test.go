@@ -3,8 +3,8 @@ package harfbuzz
 import (
 	"testing"
 
-	tt "github.com/speedata/textlayout/fonts/truetype"
-	"github.com/speedata/textlayout/language"
+	tt "github.com/boxesandglue/textlayout/fonts/truetype"
+	"github.com/boxesandglue/textlayout/language"
 )
 
 // ported from harfbuzz/test/api/test-ot-tag.c Copyright © 2011  Google, Inc. Behdad Esfahbod

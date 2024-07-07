@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/speedata/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts"
 )
 
 // PathBounds represents a control bounds for

@@ -6,10 +6,10 @@ import (
 	"io"
 	"strings"
 
-	"github.com/speedata/textlayout/fonts"
-	"github.com/speedata/textlayout/fonts/glyphsnames"
-	ps "github.com/speedata/textlayout/fonts/psinterpreter"
-	"github.com/speedata/textlayout/fonts/simpleencodings"
+	"github.com/boxesandglue/textlayout/fonts"
+	"github.com/boxesandglue/textlayout/fonts/glyphsnames"
+	ps "github.com/boxesandglue/textlayout/fonts/psinterpreter"
+	"github.com/boxesandglue/textlayout/fonts/simpleencodings"
 )
 
 var _ fonts.Face = (*Font)(nil)
