@@ -1,6 +1,6 @@
 module github.com/boxesandglue/textlayout
 
-go 1.18
+go 1.21
 
 require (
 	github.com/benoitkugler/pstokenizer v1.0.1
