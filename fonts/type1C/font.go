@@ -117,6 +117,9 @@ func (f *Font) parseDict(dict []byte) {
 			case 14:
 				// force bold
 				popInt()
+			case 17:
+				// LanguageGroup
+				popInt()
 			case 18:
 				// expansion factor
 				operands = operands[:0]
