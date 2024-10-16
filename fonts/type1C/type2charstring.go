@@ -115,6 +115,7 @@ func getSubrsIndex(nominalWidthX int, defaultWidthX int, globalSubrs [][]byte, l
 			// rrcurveto
 			state.clearStack()
 		} else if b0 == 10 {
+			// callsubr
 			subrIdx := state.pop() + localBias
 
 			if subrIdx < len(localSubrs) {
@@ -159,7 +160,13 @@ func getSubrsIndex(nominalWidthX int, defaultWidthX int, globalSubrs [][]byte, l
 			}
 		} else if b0 == 21 {
 			// rmoveto
-			state.popN(2)
+
+			// rmoveto can have one or two arguments. See also bug #2.
+			if len(state.stack) > 1 {
+				state.popN(2)
+			} else {
+				state.pop()
+			}
 		} else if b0 == 22 {
 			// hmoveto
 			state.clearStack()
@@ -187,8 +194,8 @@ func getSubrsIndex(nominalWidthX int, defaultWidthX int, globalSubrs [][]byte, l
 			state.push(int(i))
 			pos += 2
 		} else if b0 == 29 {
-			subrIdx := state.pop() + globalBias
-
+			top := state.pop()
+			subrIdx := top + globalBias
 			if subrIdx < len(globalSubrs) {
 				getSubrsIndex(nominalWidthX, defaultWidthX, globalSubrs, localSubrs, globalSubrs[subrIdx], state)
 				usedGlobalSubrsMap[subrIdx] = true
