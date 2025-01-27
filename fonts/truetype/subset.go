@@ -85,11 +85,8 @@ func (fnt *Font) subsetCFF(codepoints []GID) error {
 
 // WidthsPDF returns a width entry suitable for embedding in a PDF file.
 func (fnt *Font) WidthsPDF() string {
-	r := float64(fnt.upem) / 1000
-
 	getWd := func(cp GID) string {
-		rounded := math.Round(10*float64(fnt.Hmtx[cp].Advance)/r) / 10
-		return strconv.FormatFloat(rounded, 'f', -1, 64)
+		return strconv.FormatFloat(float64(fnt.Hmtx[cp].Advance), 'f', -1, 64)
 	}
 
 	var b strings.Builder
