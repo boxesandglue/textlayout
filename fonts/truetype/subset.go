@@ -25,10 +25,15 @@ func binarywrite(w io.Writer, data interface{}) error {
 func (fnt *Font) getAdditionalCodepoints(codepoint GID) []GID {
 	var additionalCodepoints []GID
 	cp := fnt.Glyf[codepoint]
+	additionalCodepoints = append(additionalCodepoints, codepoint)
 	switch t := cp.data.(type) {
 	case simpleGlyphData:
-		additionalCodepoints = append(additionalCodepoints, codepoint)
+		// ignore
 	case *compositeGlyphData:
+		for _, g := range t.glyphs {
+			additionalCodepoints = append(additionalCodepoints, fnt.getAdditionalCodepoints(g.glyphIndex)...)
+		}
+	case compositeGlyphData:
 		for _, g := range t.glyphs {
 			additionalCodepoints = append(additionalCodepoints, fnt.getAdditionalCodepoints(g.glyphIndex)...)
 		}
@@ -394,8 +399,6 @@ func (fnt *Font) writeTable(w io.Writer, t Tag) error {
 		err = fnt.writeMaxp(w)
 	case tagHmtx:
 		err = fnt.writeHmtx(w)
-	// case tagfpg:
-	// 	err = fnt.writeFpgm(w)
 	case tagCvt:
 		err = fnt.writeCvt(w)
 	case tagPrep:
