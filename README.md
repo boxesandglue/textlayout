@@ -1,3 +1,6 @@
+⚠️ This package is not maintained anymore. Use https://github.com/boxesandglue/textshape instead.
+
+
 # Text layout library for Golang [![Go Reference](https://pkg.go.dev/badge/github.com/boxesandglue/textlayout.svg)](https://pkg.go.dev/github.com/boxesandglue/textlayout)
 
 This module provides a chain of tools to layout text. It is mainly a port of the C libraries harfbuzz and graphite.
